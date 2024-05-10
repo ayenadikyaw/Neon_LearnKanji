@@ -1,0 +1,441 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Delius", cursive;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.multipleChoiceNeonBg {
+  width: 100vw; /* width of the viewport size */
+  height: 100vh; /* height of the viewport size */
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../image/gamebg.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: animateBG 5s linear infinite;
+}
+
+@keyframes animateBG {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Question Box */
+.box {
+  position: absolute;
+  top: 20%;
+  width: 65%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.216);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.823);
+}
+
+.box:after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #fff;
+  z-index: -2;
+  filter: blur(100px);
+}
+
+.box:before,
+.box:after {
+  background: linear-gradient(235deg, #89ff00, #060c21, #00bcd4);
+}
+
+.content {
+  padding: 20px;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 25px;
+}
+
+/* three answer boxes  */
+.area {
+  width: 200px;
+  height: 100px;
+  position: relative;
+  display: flex;
+  perspective: 1000px; /* 3d postion ယူဖို့ */
+  transform: all 0.5s;
+  margin: 0 40px;
+}
+
+.area:hover {
+  transform: scale(1.1);
+}
+
+.area .box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.808);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.922);
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.area .box span {
+  width: 80%;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  transform: translateZ(50px);
+}
+
+/* icon */
+.icon {
+  color: white; /* root-em , 1rem = 16px*/
+  font-size: 14rem;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  animation: animateBG 5s linear infinite;
+}
+
+/* Phway*/
+#controller{
+ font-size: 10rem;
+}
+
+.neon {
+  text-shadow: 0 0 10px #fff,
+    /* 0 0 20px #fff, */ /* 0 0 30px #fff, */ /* 0 0 40px #d400ff, */ 0 0 20px
+      #d400ff,
+    0 0 30px #d400ff, 0 0 40px #d400ff;
+}
+
+/* Exit Button */
+.exit {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 30px;
+  right: 70px;
+}
+
+.exit .toggle {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: 1s;
+}
+
+.exit .toggle ion-icon {
+  color: #00fbff;
+  font-size: 140%;
+  font-weight: bold;
+}
+
+.exit .toggle:hover {
+  animation: back_animation 5s linear infinite;
+}
+
+.exit .toggle:hover ion-icon {
+  color: #333;
+}
+
+.exit li {
+  position: absolute;
+  list-style: none;
+  transition: 0.5s;
+  transform-origin: 150px;
+  transform: translate(20px, 20px);
+  opacity: 0;
+}
+
+.exit.active li {
+  position: relative;
+  font-size: 120%;
+  margin-right: 6px;
+  transform: translate(10px, 70px);
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.exit li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  text-decoration: none;
+  border: 1px solid var(--clr);
+  border-radius: 50%;
+  transition: 1s;
+}
+
+.exit li a ion-icon {
+  color: var(--clr);
+}
+
+.exit li a:hover {
+  transition: 0s;
+  background: var(--clr);
+  box-shadow: 0 0 10px var(--clr), 0 0 30px var(--clr), 0 0 50px var(--clr);
+}
+
+.exit li p {
+  opacity: 0;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.exit li:hover p {
+  background: var(--clr);
+  box-shadow: 0 0 10px var(--clr), 0 0 30px var(--clr), 0 0 50px var(--clr);
+  transform: translateY(10px);
+  opacity: 1;
+}
+
+.exit li a:hover ion-icon {
+  color: #333;
+}
+
+.learning {
+  color: #03a9f4;
+}
+
+.exit li a:hover .learning {
+  color: #333;
+}
+/* Profile */
+.profile {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  bottom: 60px;
+  right: 70px;
+}
+
+#profile_txt {
+  position: absolute;
+  font-size: 40px;
+  color: #00d9ff;
+  animation: animateBG 5s linear infinite;
+  left: 20px;
+  top: 10px;
+}
+
+.shadow {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Back Button */
+.back_btn {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 60px;
+  left: 90px;
+  border-radius: 50%;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  transition: 1s;
+}
+
+.back_btn a {
+  text-decoration: none;
+}
+
+.back_btn ion-icon {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  color: #00d0ff;
+}
+
+.back_btn:hover {
+  animation: back_animation 5s linear infinite;
+}
+
+.back_btn:hover ion-icon {
+  color: #333;
+}
+
+@keyframes back_animation {
+  0% {
+    background: #e91818;
+    box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
+  }
+  15% {
+    background: #ffbc00;
+    box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
+  }
+  30% {
+    background: #4dff03;
+    box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
+  }
+  45% {
+    background: #00fbff;
+    box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
+  }
+  60% {
+    background: #1303f4;
+    box-shadow: 0 0 10px #1303f4, 0 0 30px #1303f4, 0 0 50px #1303f4;
+  }
+  75% {
+    background: #a803f4;
+    box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
+  }
+  100% {
+    background: #ff0058;
+    box-shadow: 0 0 10px #ff0058, 0 0 30px #ff0058, 0 0 50px #ff0058;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .exit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .exit li {
+    transform: translateX(10px);
+  }
+
+  .exit.active li {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    flex-direction: column;
+    padding: 0;
+    transform: translateX(-210px);
+  }
+
+  .profile {
+    width: 60px;
+    height: 60px;
+    bottom: 80px;
+    right: 75px;
+  }
+
+  #profile_txt {
+    font-size: 35px;
+    left: 19px;
+    top: 9px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+
+  .exit {
+    top: 30px;
+    right: 30px;
+  }
+  .content {
+    font-size: 17px;
+  }
+  .area{
+    margin: 10px;
+  }
+  .area .box span {
+    font-size: 15px;
+  }
+  .profile {
+    bottom: 80px;
+    right: 30px;
+  }
+}
+
+#tick,#cross{
+  margin-bottom: 150px; 
+  z-index:1000;
+  font-size: 12rem;
+  display: none;
+}
+
+
+.icon.correct.animate {
+  animation: yay 1.5s ease-in-out 1 both;
+}
+@keyframes yay {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  50% {
+    transform: scale(1.1);
+    animation-timing-function: ease-out;
+  }
+}
+
+/* correct and wrong animation*/
+.icon.wrong.animate {
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-8px);
+  }
+}

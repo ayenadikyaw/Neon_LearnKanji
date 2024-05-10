@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matching Game</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+  />
+    <script src="../Scripts/jquery3.6.0.js"></script>
+    <script src="../Scripts/matching.js"></script>
+    <link rel="stylesheet" href="../CSS/matchingGame.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+  
+    <div class="matchingGameNeonBg"></div>
+
+    <!-- Profile -->
+    <div class="profile">
+      <span class="shadow"></span>
+      <span id="profile_txt">K</span>
+    </div>
+    <!-- Back Button -->
+    <div class="back_btn">
+      <a href="./gameTemplate.html"><ion-icon name="return-up-back-outline"></ion-icon></a>
+    </div>
+
+    <!-- Exit Button -->
+    <ul class="exit">
+      <div class="toggle"><ion-icon name="exit"></ion-icon></div>
+      <li style="--clr: #ffbc00">
+        <a href="#">
+          <ion-icon name="home-outline"></ion-icon>
+        </a>
+        <p>Home</p>
+      </li>
+      <li style="--clr: #4dff03">
+        <a href="./GradeOptions.html"><ion-icon name="grid-outline"></ion-icon></a>
+        <p>Grade</p>
+      </li>
+      <li style="--clr: #03a9f4">
+        <a href="./LearningTemplate.html"
+          ><span class="material-symbols-outlined learning">
+            local_library
+          </span></a
+        >
+        <p>Learning</p>
+      </li>
+    </ul>
+  
+    <!-- for 10 words -->
+    <div class="container" id="container1">
+      <!-- left  -->
+      <div id="leftkanji">
+        <!-- <div class="center">
+          <div class="outer button">
+            <button>Matching 1</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 2</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 3</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 4</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 5</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- right  -->
+      <div id="rightkanji">
+        <!-- <div class="center">
+          <div class="outer button">
+            <button>Matching 6</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 7</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 8</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 9</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 10</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div> -->
+      </div> 
+    </div>
+
+    <!-- for the next 10 words  -->
+    <div class="container" id="container2">
+      <!-- left  -->
+      <div id="leftmeaning">
+        <!-- <div class="center">
+          <div class="outer button">
+            <button>Matching 1</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 2</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 3</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 4</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 5</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- right  -->
+      <div id="rightmeaning">
+        <!-- <div class="center">
+          <div class="outer button">
+            <button>Matching 6</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 7</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 8</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 9</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <br />
+        <div class="center">
+          <div class="outer button">
+            <button>Matching 10</button>
+            <span></span>
+            <span></span>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+ 
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+    </div>
+
+
+    <script>
+      $(".toggle").click(function () {
+        $(".exit").toggleClass("active");
+      });
+    </script>
+  </body>
+</html>

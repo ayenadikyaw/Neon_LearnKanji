@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Template</title>
+    <link rel="stylesheet" href="../CSS/LearningTemplate.css" />
+    <script src="../Scripts/jquery3.6.0.js"></script>
+    <script src="../Scripts/learning.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <div class="section"></div>
+    <!-- Profile -->
+    <div class="profile">
+      <span class="shadow"></span>
+      <span id="profile_txt">K</span>
+    </div>
+
+    <!-- Exit Button -->
+    <ul class="exit">
+      <div class="toggle"><ion-icon name="exit"></ion-icon></div>
+      <li style="--clr: #ffbc00">
+        <a href="#">
+          <ion-icon name="home-outline"></ion-icon>
+        </a>
+        <p class="ext_txt">Home</p>
+      </li>
+      <li style="--clr: #03a9f4">
+        <a href="./gameTemplate.html"
+          ><ion-icon name="game-controller-outline"></ion-icon
+        ></a>
+        <p class="ext_txt">Game</p>
+      </li>
+      <li style="--clr: #4dff03">
+        <a href="./GradeOptions.html"
+          ><ion-icon name="grid-outline"></ion-icon
+        ></a>
+        <p class="ext_txt">Grade</p>
+      </li>
+    </ul>
+    <!-- Three Cards -->
+    <div class="container">
+      <!-- 1st Card -->
+      <div class="card">
+        <div class="box">
+          <i></i>
+          <div class="content">
+            <div class="video_btn">
+              <div class="play"></div>
+            </div>
+            <span class="kanji_IMG">
+              <!-- <img
+                src="../image/mizu_4.svg"
+                alt="Kanji Image"
+                class="kanji_image"
+              /> -->
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- 2nd Card -->
+      <div class="card">
+        <div class="box">
+          <i></i>
+          <div class="content">
+            <!-- Read Button -->
+            <div class="egBTN" id="generate-btn">
+              <div class="read_btn" id="read_btn">
+                <img
+                  src="../image/watchIMG.png"
+                  alt="cartoon"
+                  class="read_img"
+                />
+              </div>
+              <div class="read_txt" id="read_text">READ</div>
+            </div>
+            <div class="egTXT" id="egTXT">Example Sentence</div>
+            <!-- Show sentence -->
+            <div class="show_txt" id="show_txt">
+              <h2>Example Sentence</h2>
+              <span class="example_txt" id="example-sentences">
+                <p>すみません！みずをください。</p>
+                <p>sumimasen! mizu wo kudasai.</p>
+                <p>Excuse me, could I have a water please?</p>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 3rd Card -->
+      <div class="card">
+        <div class="box">
+          <i></i>
+          <div class="content">
+            <h2>
+              <span class="kanji" id="kanji">水</span>
+              <div class="voice" id="sound">
+                <ion-icon name="volume-medium"></ion-icon>
+              </div>
+            </h2>
+            <p>
+              <b>Meaning: </b>
+              <span class="meaning" id="meaning">Water </span>
+            </p>
+            <p>
+              <b>Kunyomi: </b>
+              <span class="kun_reading" id="kunyomi">みず</span>
+            </p>
+            <p>
+              <b>Onyomi: </b> <span class="on_reading" id="onyomi">スイ</span>
+            </p>
+            <p>
+              <b>Stroke-Counts: </b>
+              <span class="stroke_count" id="stroke">4</span>
+            </p>
+            <button class="next_btn" id="next">NEXT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clip">
+      <div id="kanjiVid"></div>
+      <!-- <video src="../video/mizu_00.mp4" controls></video> -->
+      <b class="close"><ion-icon name="close-circle"></ion-icon></b>
+    </div>
+    
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+    </div>
+
+
+    <script>
+      $(".video_btn").click(function () {
+        $(".clip").css("display", "flex");
+      });
+      $(".close").click(function () {
+        $(".clip").css("display", "none");
+      });
+      $(".toggle").click(function () {
+        $(".exit").toggleClass("active");
+      });
+      // $(".egBTN").click(function () {
+      //   $(".read_btn").slideUp(1000, function () {
+      //     $(".read_btn").css("display", "none");
+      //   });
+      //   $(".read_txt").slideDown(1000, function () {
+      //     $(".read_txt").css("display", "none");
+      //   });
+      //   $(".egTXT").slideUp(1000, function () {
+      //     $(".egTXT").css("display", "none");
+      //   });
+      //   $(".show_txt").slideDown(4000, function () {
+      //     $(".show_txt").css("display", "block");
+      //   });
+      // });
+    </script>
+  </body>
+</html>

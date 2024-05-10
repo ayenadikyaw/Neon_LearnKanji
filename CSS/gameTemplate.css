@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Delius Unicase", cursive;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.gameTemplateBgEffect {
+  width: 100vw; /* width of the viewport size */
+  height: 100vh; /* height of the viewport size */
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../image/BG3.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: animateBG 4s linear infinite;
+  margin: 0 20%;
+}
+@keyframes animateBG {
+  100% {
+    filter: hue-rotate(360deg); /* defult က filter: hue-rotate(0) */
+  }
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.area {
+  width: 250px;
+  height: 200px;
+  display: flex;
+  perspective: 1000px; /* 3d position ယူဖို့ */
+  transform: all 0.5s;
+  margin-bottom: 20px;
+}
+
+.area:hover {
+  transform: scale(1.1);
+}
+
+.area .box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 1.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-image: url(../image/cardBG2.jpg);
+  animation: animateBG 4s linear infinite;
+}
+
+.area .box span {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  color: #fffffb;
+  text-transform: uppercase;
+}
+
+.shadow {
+  position: absolute;
+  inset: 25px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.area:hover .box {
+  transform: scale(1.25) rotateX(10deg) rotateY(360deg);
+  animation: back_animation 5s linear infinite;
+}
+
+/* Profile */
+.profile {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  bottom: 60px;
+  right: 70px;
+}
+
+.profile_shadow {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+#profile_txt {
+  position: absolute;
+  font-size: 40px;
+  color: #00d9ff;
+  animation: animateBG 5s linear infinite;
+  left: 20px;
+  top: 10px;
+}
+
+@keyframes back_animation {
+  0% {
+    box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
+  }
+  15% {
+    box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
+  }
+  30% {
+    box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
+  }
+  45% {
+    box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
+  }
+  60% {
+    box-shadow: 0 0 10px #1303f4, 0 0 30px #1303f4, 0 0 50px #1303f4;
+  }
+  75% {
+    box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
+  }100%{
+    box-shadow: 0 0 10px #ff0058, 0 0 30px #ff0058, 0 0 50px #ff0058;
+  }
+}
+
+@media screen and (max-width : 1200px) {
+
+  .area {
+    width: 200px;
+    height: 180px;
+    margin-bottom: 0;
+  }
+
+  .profile {
+    bottom: 40px;
+    right: 70px;
+  }
+}

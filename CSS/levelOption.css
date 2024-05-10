@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Delius Unicase", cursive;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.section {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../image/BG5.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: animateBG 5s linear infinite;
+}
+
+@keyframes animateBG {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Level Section */
+.level_options {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.level {
+  width: 15%;
+  position: relative;
+  padding: 10px;
+  margin: 15px;
+
+  font-size: 100%;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: cyan;
+}
+
+.level::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+}
+
+.level span {
+  position: relative;
+  z-index: 1;
+}
+
+.level i {
+  position: absolute;
+  inset: 3px;
+  display: block;
+  z-index: 1;
+}
+
+.level i::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 100%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  border: 2px solid cyan;
+  transition: 0.5s;
+}
+
+.level i::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  border: 2px solid cyan;
+  transition: 0.5s;
+}
+
+.level:hover i::before {
+  left: 0%;
+  transform: translateX(-50%) rotate(45deg);
+  box-shadow: 24px 24px cyan;
+}
+
+.level:hover i::after {
+  left: 100%;
+  transform: translateX(-50%) rotate(-45deg);
+  box-shadow: 24px -24px cyan;
+}
+
+/* Back Button */
+.back_btn {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 18%;
+  left: 19%;
+  border-radius: 50%;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  transition: 1s;
+}
+
+.back_btn a {
+  text-decoration: none;
+}
+
+.back_btn ion-icon {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  color: #00d0ff;
+}
+
+.back_btn:hover {
+  animation: back_animation 5s linear infinite;
+}
+
+.back_btn:hover ion-icon {
+  color: #333;
+}
+
+@keyframes back_animation {
+  0% {
+    background: #e91818;
+    box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
+  }
+  15% {
+    background: #ffbc00;
+    box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
+  }
+  30% {
+    background: #4dff03;
+    box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
+  }
+  45% {
+    background: #00fbff;
+    box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
+  }
+  60% {
+    background: #1303f4;
+    box-shadow: 0 0 10px #1303f4, 0 0 30px #1303f4, 0 0 50px #1303f4;
+  }
+  75% {
+    background: #a803f4;
+    box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
+  }
+  100% {
+    background: #ff0058;
+    box-shadow: 0 0 10px #ff0058, 0 0 30px #ff0058, 0 0 50px #ff0058;
+  }
+}
+
+/* Profile */
+.profile {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  bottom: 40px;
+  right: 70px;
+}
+
+#profile_txt {
+  position: absolute;
+  font-size: 40px;
+  color: #00d9ff;
+  animation: animateBG 5s linear infinite;
+  left: 20px;
+  top: 10px;
+}
+
+.shadow {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 1200px) {
+  .back_btn {
+    top: 18%;
+    left: 3%;
+  }
+
+  .level {
+    font-size: 90%;
+  }
+
+  .profile {
+    width: 60px;
+    height: 60px;
+    bottom: 120px;
+    right: 20px;
+  }
+
+  #profile_txt {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .level_options {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+/** for button lock */
+.disabled {
+  pointer-events: none; /* Disable click events */
+  opacity: 0.5; /* Optionally, reduce opacity to visually indicate disabled state */
+}

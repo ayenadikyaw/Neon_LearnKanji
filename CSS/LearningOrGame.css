@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&display=swap');
+
+:root{
+    --title_color:#00d5ff;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Delius Unicase", cursive;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.section{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../image/BG2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: animateBG 5s linear infinite;
+}
+
+@keyframes animateBG{
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* Behide the image */
+.box{
+    width: 310px;
+    height: 250px;
+    position: relative;
+    margin: 0 30px;
+    background: repeating-conic-gradient(from var(--a),cyan 0%,cyan 5%,transparent 5%,transparent 40%, cyan 50%);
+    animation: animate 4s linear infinite;
+    border-radius: 10px;
+}
+
+.box::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(from var(--a),rgb(177, 0, 130) 0%,rgb(177, 0, 130)  5%,transparent 5%,transparent 40%, rgb(177, 0, 130) 50%);
+    animation: animate 4s -1s linear infinite;
+    border-radius: 10px;
+}
+
+.box::after{
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background-image: url(../image/cardBG.jpg);
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+@property --a{
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes animate {
+    0%{
+        --a: 0deg;
+    }
+    100%{
+        --a: 360deg
+    }
+}
+
+/* The image */
+.card{
+    width: 200px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    perspective: 2500px;
+    margin: 0 45px;
+    cursor: pointer;
+    bottom: 20px;
+    left: 0px;
+    z-index: 1000;
+}
+
+.cover-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3%;
+}
+
+.wrapper{
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.wrapper::after{
+    content: '';
+    width: 100%;
+    transition: all 0.6s;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 3%;
+}
+
+/* Title Box */
+.title{
+    transform: translateY(90px);
+    padding: 15px;
+    width: 80%;
+    margin-top: 30px;
+    font-size: 100%;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: cyan;
+}
+
+.title::after{
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background-image: url(../image/cardBG.jpg);
+    border-radius: 10px;
+    animation: animateBG 5s linear infinite;
+}
+
+.title span{
+    position: relative;
+    z-index: 1;
+}
+
+.title i{
+    position: absolute;
+    inset: 1px;
+    display: block;
+    z-index: 1;
+}
+
+.title i::before{
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 100%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: url(../image/cardBG.jpg);
+    border: 2px solid transparent;
+    transition: 0.5s;
+    animation: animateBG 5s linear infinite;
+}
+
+.title i::after{
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: url(../image/cardBG.jpg);
+    border: 2px solid transparent;
+    transition: 0.5s;
+    animation: animateBG 5s linear infinite;
+}
+
+/* Characters */
+.character{
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    transition: all 0.5s;
+}
+
+/* Effect of cards */
+.card:hover .wrapper{
+    transform: perspective(900px) translateY(-10%) rotateX(60deg) translateZ(0px);
+    box-shadow: 0px 35px 32px -8px rgba(0, 0, 0,0.6)
+}
+
+.card:hover .title{
+    letter-spacing: 1px;
+    box-shadow: 0 0 30px var(--title_color);
+    transform: translate3d(0%,140%,100px);
+}
+
+.card:hover i::before{
+    left: 0%;
+    transform: translateX(-50%) rotate(45deg);
+    box-shadow: 34px 34px var(--title_color);
+}
+
+.card:hover i::after{
+    left: 100%;
+    transform: translateX(-50%) rotate(-45deg);
+    box-shadow: 34px -34px var(--title_color);
+}
+
+.card:hover .wrapper::after{
+    opacity: 1;
+    height: 100%;
+}
+
+.card:hover .character{
+    opacity: 1;
+    transform: translate3d(0%,-34%,-10px);
+}
+
+/* Profile */
+.profile {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-image: url(../image/cardBG.jpg);
+    animation: animateBG 5s linear infinite;
+    bottom: 60px;
+    right: 70px;
+  }
+  
+  #profile_txt {
+    position: absolute;
+    font-size: 40px;
+    color: #00d9ff;
+    animation: animateBG 5s linear infinite;
+    left: 20px;
+    top: 10px;
+  }
+  
+  .shadow {
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Back Button */
+  .back_btn {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50px;
+    left: 90px;
+    border-radius: 50%;
+    background-image: url(../image/cardBG.jpg);
+    animation: animateBG 5s linear infinite;
+    transition: 1s;
+  }
+  
+  .back_btn a{
+    text-decoration: none;
+  } 
+
+  .back_btn ion-icon {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+    color: #00d0ff;
+  }
+  
+  .back_btn:hover {
+    animation: back_animation 5s linear infinite;
+  }
+  
+  .back_btn:hover ion-icon {
+    color: #333;
+  }
+  
+  @keyframes back_animation {
+    0% {
+      background: #e91818;
+      box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
+    }
+    15% {
+      background: #ffbc00;
+      box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
+    }
+    30% {
+      background: #4dff03;
+      box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
+    }
+    45% {
+      background: #00fbff;
+      box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
+    }
+    60% {
+      background: #1303f4;
+      box-shadow: 0 0 10px #1303f4, 0 0 30px #1303f4, 0 0 50px #1303f4;
+    }
+    75% {
+      background: #a803f4;
+      box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
+    }100%{
+      background: #ff0058;
+      box-shadow: 0 0 10px #ff0058, 0 0 30px #ff0058, 0 0 50px #ff0058;
+    }
+  }
+
+  @media screen and (max-width : 700px) {
+    .profile {
+        bottom: 30px;
+        right: 10px;
+      }
+
+      .title{
+        margin-top: 5px;
+        font-size: 70%;
+    }
+
+    .card:hover i::before{
+        left: 0%;
+        transform: translateX(-50%) rotate(45deg);
+        box-shadow: 40px 40px var(--title_color);
+    }
+    
+    .card:hover i::after{
+        left: 100%;
+        transform: translateX(-50%) rotate(-45deg);
+        box-shadow: 40px -40px var(--title_color);
+    }
+
+    .card{ 
+        bottom: 30px;
+        left: -5px;
+    }
+
+    .back_btn {
+      top: 25px;
+      left: 55px;
+    }
+    
+  }
+  

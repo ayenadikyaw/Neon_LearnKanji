@@ -1,0 +1,702 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Delius", cursive;
+  color: white;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background Image */
+.section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../image/learning_BG.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: animateBG 5s linear infinite;
+}
+
+@keyframes animateBG {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Three Cards */
+.container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.container .card {
+  position: relative;
+  width: 320px;
+  height: 440px;
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.05),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.5),
+    5px 5px 5px rgba(0, 0, 0, 0.5), -5px -5px 5px rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  margin: 30px;
+}
+
+.container .card .box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.container .card .box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffbc00, #ff0058);
+  border-radius: 15px;
+}
+
+.container .card .box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffbc00, #ff0058);
+  filter: blur(30px);
+}
+
+.container .card:nth-child(2) .box::before,
+.container .card:nth-child(2) .box::after {
+  background: linear-gradient(315deg, #03a9f4, #ff0058);
+}
+
+.container .card:nth-child(3) .box::before,
+.container .card:nth-child(3) .box::after {
+  background: linear-gradient(315deg, #4dff03, #00d0ff);
+}
+
+.container .card .box i {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  z-index: 2;
+  inset: 10px;
+}
+
+.container .card .box .content {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1000;
+  width: 100%;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.container .card:hover .box {
+  transform: translateY(-20px);
+}
+
+/* Voice Icone */
+.voice {
+  display: inline;
+  margin-left: 10px;
+}
+
+/* Next Button */
+.next_btn {
+  width: 100px;
+  height: 40px;
+  margin: 5px;
+  border-radius: 10px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  box-shadow: inset 2px 2px 7px rgb(22, 22, 22),
+    inset -2px -2px 7px rgb(22, 22, 22);
+}
+
+.next_btn:hover {
+  box-shadow: 2px 2px 7px rgb(22, 22, 22), -2px -2px 7px rgb(22, 22, 22);
+}
+
+/* Video Button & Kanji Image */
+
+.video_btn {
+  position: relative;
+  z-index: 10000;
+}
+
+.play {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: -95px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 1px 1px 10px rgb(22, 22, 22);
+}
+
+.play::before {
+  content: "";
+  position: absolute;
+  border: 25px solid #00d0ff;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid transparent;
+  transform: translateX(9px);
+}
+
+.play:hover {
+  box-shadow: 1px 1px 10px rgb(22, 22, 22);
+}
+
+.clip {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 1px 5px 45px rgba(0, 213, 255, 0.214),
+    -1px -2px 45px rgba(0, 213, 255, 0.214);
+  border: 2px solid transparent;
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: 0.5s;
+  display: none;
+}
+
+.clip video {
+  outline: none;
+  border: 10px solid #ffbc00;
+  box-shadow: inset 0 15px 35px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+.clip .close ion-icon {
+  color: #ffbc00;
+  position: absolute;
+  top: 25%;
+  font-size: 20px;
+  transition: 0.5s;
+}
+
+.container .card .box .content span .kanji_image {
+  width: 100%;
+  position: relative;
+  top: -20px;
+}
+
+/* Display Example Sentence */
+.read_btn {
+  position: relative;
+  top: -20px;
+}
+
+.read_btn .read_img {
+  width: 100%;
+}
+
+.read_txt {
+  position: absolute;
+  left: 117px;
+  top: 195px;
+  font-size: 115%;
+  color: black;
+  font-weight: bold;
+}
+
+.egTXT {
+  position: absolute;
+  top: 245px;
+  font-weight: bold;
+}
+
+.show_txt {
+  display: none;
+  text-align: center;
+  color: white;
+}
+
+.show_txt p::before {
+  content: "- ";
+}
+
+/* Exit Button */
+.exit {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 30px;
+  right: 82px;
+}
+
+.exit .toggle {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: 1s;
+}
+
+.exit .toggle ion-icon {
+  color: #00fbff;
+  font-size: 140%;
+  font-weight: bold;
+}
+
+.exit .toggle:hover{
+  animation: back_animation 5s linear infinite;
+}
+
+.exit .toggle:hover ion-icon{
+  color: #333;
+}
+
+.exit li {
+  position: absolute;
+  list-style: none;
+  transition: 0.5s;
+  transform-origin: 150px;
+  transform: translate(20px,20px);
+  opacity: 0;
+}
+
+.exit.active li {
+  position: relative;
+  font-size: 120%;
+  margin-right: 6px;
+  transform: translate(30px, 70px);
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.exit li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  text-decoration: none;
+  border: 1px solid var(--clr);
+  border-radius: 50%;
+  transition: 1s;
+}
+
+.exit li a ion-icon {
+  color: var(--clr);
+}
+
+.exit li a:hover {
+  transition: 0s;
+  background: var(--clr);
+  box-shadow: 0 0 10px var(--clr), 0 0 30px var(--clr), 0 0 50px var(--clr);
+}
+
+.exit li p{
+  opacity: 0;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.exit li:hover p{
+  background: var(--clr);
+  box-shadow: 0 0 10px var(--clr), 0 0 30px var(--clr), 0 0 50px var(--clr);
+  transform: translateY(10px);
+  opacity: 1;
+}
+
+.exit li a:hover ion-icon,.ext_txt {
+  color: #333;
+}
+
+@keyframes back_animation {
+  0% {
+    background: #e91818;
+    box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
+  }
+  15% {
+    background: #ffbc00;
+    box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
+  }
+  30% {
+    background: #4dff03;
+    box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
+  }
+  45% {
+    background: #00fbff;
+    box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
+  }
+  60% {
+    background: #1303f4;
+    box-shadow: 0 0 10px #1303f4, 0 0 30px #1303f4, 0 0 50px #1303f4;
+  }
+  75% {
+    background: #a803f4;
+    box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
+  }100%{
+    background: #ff0058;
+    box-shadow: 0 0 10px #ff0058, 0 0 30px #ff0058, 0 0 50px #ff0058;
+  }
+}
+
+
+/* Profile */
+.profile {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  bottom: 40px;
+  right: 70px;
+}
+
+#profile_txt {
+  position: absolute;
+  font-size: 40px;
+  color: #00d9ff;
+  animation: animateBG 5s linear infinite;
+  left: 20px;
+  top: 10px;
+}
+
+.shadow {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width : 1100px) {
+  .container{
+    width: 100vw;
+    display: flex;
+    left: 0;
+    padding: 0;
+    height: 100vh;
+  } 
+
+  .container .card {
+    width: 210px;
+    height: 300px;
+    padding: 0;
+    margin: 10px;
+  }
+
+  .container .card .box {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+  }
+
+  .container .card .box .content span .kanji_image {
+    width: 80%;
+    position: absolute;
+    top: 90px;
+    left: 20px;
+  }
+
+  .container .card .box i {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    inset: 3px;
+    border-radius: 10px;
+  }
+
+  .play {
+    top: -90px;
+    left: -40px;
+  }
+
+.read_btn {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+}
+
+.read_btn .read_img {
+  width: 100%;
+}
+
+.read_txt {
+  left: 80px;
+  top: 130px;
+}
+
+.egTXT {
+  position: absolute;
+  top: 170px;
+  font-weight: bold;
+}
+
+.container .card .box .content {
+  padding: 20px;
+  line-height: 30px;
+  cursor: pointer;
+  font-size: 80%;
+}
+
+.next_btn {
+  width: 80px;
+  height: 40px;
+}
+
+.exit {
+  top: 20px;
+  right: 35px;
+  display: flex;
+}
+
+.exit li {
+  transform: translate(10px,20px);
+  height: 10px;
+  z-index: 10000;
+  width: 40px;
+}
+
+.exit.active li {
+  transform: translate(7px, 35px);
+}
+
+.exit.active li {
+  margin-right: 1px;
+  transform: translate(3px, 55px);
+}
+
+.exit li p{
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile {
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 20px;
+}
+
+#profile_txt {
+  font-size: 27px;
+  left: 21px;
+  top: 15px;
+}
+
+}
+
+
+@media screen and (max-width : 700px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+  } 
+
+  .container .card {
+    width: 300px;
+    height: 190px;
+  }
+
+  .container .card .box {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+  }
+
+  .container .card .box .content span .kanji_image {
+    width: 50%;
+    position: absolute;
+    top: 10px;
+    left: 100px;
+  }
+
+  .container .card .box i {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    inset: 3px;
+    border-radius: 10px;
+  }
+
+  .play {
+    top: -30px;
+    left: -80px;
+  }
+
+.read_btn {
+  top: -30px;
+  left: 40px;
+}
+
+.read_btn .read_img {
+  width: 80%;
+}
+
+.read_txt {
+  left: 125px;
+  top: 90px;
+}
+
+.egTXT {
+  position: absolute;
+  top: 130px;
+  font-weight: bold;
+}
+
+.container .card .box .content {
+  padding: 20px;
+  line-height: 30px;
+  cursor: pointer;
+  font-size: 70%;
+}
+
+.next_btn {
+  width: 70px;
+  height: 30px;
+  margin: 0px;  
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.exit {
+  top: 20px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.exit li {
+  height: 10px;
+  width: 90px;
+  z-index: 10000;
+  display: flex;
+  justify-content: space-between;
+}
+
+.exit.active li {
+  margin-right: 1px;
+  transform: translate(7px, 55px);
+}
+
+.exit li p{
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile {
+  width: 50px;
+  height: 50px;
+  bottom: 40px;
+  right: 20px;
+}
+
+#profile_txt {
+  font-size: 25px;
+  left: 17px;
+  top: 10px;
+}
+
+}
+
+
+ /* ================================================= */
+ .loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+  display: none; /* Initially hidden */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it's above other content */
+}
+
+.spinner {
+  border: 5px solid #1a1a1a;
+  border-top: 5px solid #f3f3f3;
+  border-radius: 50%;
+  width: 5vh;
+  height: 5vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: loading 1s linear 3;
+  opacity:0;
+}
+@keyframes loading {
+  0% { transform: rotate(0deg); opacity:1;}
+  100% { transform: rotate(360deg); opacity: 0; }
+  
+}

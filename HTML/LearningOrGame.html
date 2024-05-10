@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning OR Game Template</title>
+    <link rel="stylesheet" href="../CSS/LearningOrGame.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="../Scripts/jquery3.6.0.js"></script>
+    <script src="../Scripts/LearningOrGame.js"></script>
+  </head>
+  <body>
+    <!-- Background Section -->
+    <div class="section">
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+
+    <!-- Profile -->
+    <div class="profile">
+      <span class="shadow"></span>
+      <span id="profile_txt">K</span>
+    </div>
+    <!-- Back Button -->
+    <div class="back_btn">
+      <a href="./GradeOptions.html"><ion-icon name="return-up-back-outline"></ion-icon></a>
+    </div>
+
+    <!-- Card Section -->
+    <div class="card" id="learningOptions">
+      <div class="wrapper">
+        <img
+          class="cover-image"
+          src="../image/learning_room.jpg"
+          alt="Learning Photo"
+        />
+      </div>
+      <p class="title"><span>learning room</span><i></i></p>
+      <img
+        class="character"
+        src="../image/learning_teacher.png"
+        alt="Learning Photo"
+      />
+    </div>
+
+    <div class="card" id="gameOptions">
+      <div class="wrapper">
+        <img class="cover-image" src="../image/game_room.jpg" alt="Game Photo" />
+      </div>
+      <p class="title"><span>game room</span><i></i></p>
+      <img class="character" src="../image/game_teacher.png" alt="Game Photo" />
+    </div>
+  </body>
+</html>
