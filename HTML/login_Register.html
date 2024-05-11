@@ -6,7 +6,7 @@
     <title>Login And Registration Form</title>
     <link rel="stylesheet" href="../CSS/login&Register.css" />
     <script src="../Scripts/jquery3.6.0.js"></script>
-    <script src="../Scripts/login&Register.js"></script>
+    <script src="../Scripts/login&register.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -118,7 +118,7 @@
               </label>
             </div>
 
-            <button type="submit" class="btn" id="signup_btn">Sign Up</button>
+            <button type="submit" class="btn">Sign Up</button>
 
             <div class="login-register">
               <p>
@@ -130,6 +130,31 @@
         </div>
       </div>
     </div>
+    <!-- Success -->
+    <div class="main_success">
+      <div class="success_box">
+        <span class="shadow"></span>
+        <span id="show_success"
+          >Login Successful! <br />
+          Welcome to our Neon Website!</span
+        >
+        <div class="close_success">
+          <ion-icon name="close-circle"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <!-- alert msg -->
+    <div class="main_alert">
+      <div class="alert_box">
+        <span class="shadow_alert"></span>
+        <span id="show_alert"
+          >"Password must be at least 8 characters long and contain at least one
+          uppercase letter, one lowercase letter, one number, and one special
+          character.</span
+        >
+        <div class="close_alert"><ion-icon name="close-circle"></ion-icon></div>
+      </div>
+    </div>
     <script>
       // $(".signUp").click(function () {
       //   $(".logreg-box").addClass("active");
@@ -138,6 +163,28 @@
       // $(".signin").click(function () {
       //   $(".logreg-box").removeClass("active");
       // });
-    </script>
+      // show alert
+      // $(".signUp").click(function () {
+      //   $(".main_alert").addClass("show_A");
+      // });
+
+      // $(".close_alert").click(function () {
+      //   $(".main_alert").removeClass("show_A");
+      // });
+
+      // // successful
+      // $(".signUp").click(function () {
+      //   $(".main_success").addClass("show_S");
+      // });
+
+      $(".close_success").click(function () {
+        $(".main_success").removeClass("show_S");
+      });
+
+      // $(".main_success").setTimeout(
+      //   () => $(".main_success").removeClass("show_S"),
+      //   5000
+      // );
+    </script> 
   </body>
 </html>

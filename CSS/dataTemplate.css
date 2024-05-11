@@ -348,6 +348,37 @@ font-size: 25px;
   color: #333;
 }
 
+@keyframes back_animation {
+  0% {
+    background: #e91818;
+    box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
+  }
+  15% {
+    background: #ffbc00;
+    box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
+  }
+  30% {
+    background: #4dff03;
+    box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
+  }
+  45% {
+    background: #00fbff;
+    box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
+  }
+  60% {
+    background: #1303f4;
+    box-shadow: 0 0 10px #1303f4, 0 0 30px #1303f4, 0 0 50px #1303f4;
+  }
+  75% {
+    background: #a803f4;
+    box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
+  }
+  100% {
+    background: #ff0058;
+    box-shadow: 0 0 10px #ff0058, 0 0 30px #ff0058, 0 0 50px #ff0058;
+  }
+}
+
 
 @media screen and (max-width : 1100px) {
   .container{

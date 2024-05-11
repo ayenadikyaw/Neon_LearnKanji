@@ -46,7 +46,7 @@ $(document).ready(function () {
         doAnimation2();
       });
     }else{
-        window.location.href= "../HTML/login&register.html";
+        window.location.href= "../HTML/login_Register.html";
     }
   });
 });

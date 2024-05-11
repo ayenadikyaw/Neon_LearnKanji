@@ -36,6 +36,9 @@ $(document).ready(function () {
         if (data.kun_readings.length > 5) {
           kun_readings = data.kun_readings.slice(0, 5);
         }
+        else{
+          kun_readings = data.kun_readings;
+        }
         $("#meaning").text(data.meanings[0]);
         $("#kunyomi").text(kun_readings);
         $("#onyomi").text(data.on_readings);
@@ -276,6 +279,7 @@ $(document).ready(function () {
 
     if (isGenerateButtonClick) {
       generateExampleBackToNormal();
+      isGenerateButtonClick = false; // Clear
     }
     if (currentState === kanjis.length) {
       $("#next").hide();
