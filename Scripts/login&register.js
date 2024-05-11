@@ -25,19 +25,37 @@ $(document).ready(function () {
       var username = $(this).val();
 
       if (userDatabase.find((user) => user.username === username)) {
-        alert("Username already exists. Please choose a different one.");
+        $("#show_alert").text(
+          "Username already exists. Please enter a new username"
+        );
+        $(".main_alert").addClass("show_A");
+        setTimeout(() => {
+          $(".main_alert").removeClass("show_A");
+        }, 5000);
+
+        //alert("Username already exists. Please choose a different one.");
       }
     });
 
-    $("#email").change(function () {
+    $("#signUpemail").change(function () {
       var email = $(this).val();
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       if (!emailRegex.test(email)) {
-        alert("Invalid email address.");
+        $("#show_alert").text("Invalid email address.");
+        $(".main_alert").addClass("show_A");
+        setTimeout(() => {
+          $(".main_alert").removeClass("show_A");
+        }, 5000);
       }
       if (userDatabase.find((user) => user.email === email)) {
-        alert("This account already exists. Please choose a different one.");
+        $("#show_alert").text(
+          "This account already exists. Please choose a different one."
+        );
+        $(".main_alert").addClass("show_A");
+        setTimeout(() => {
+          $(".main_alert").removeClass("show_A");
+        }, 5000);
       }
     });
 
@@ -47,9 +65,13 @@ $(document).ready(function () {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
       if (!strongPasswordRegex.test(password)) {
-        alert(
+        $("#show_alert").text(
           "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
         );
+        $(".main_alert").addClass("show_A");
+        setTimeout(() => {
+          $(".main_alert").removeClass("show_A");
+        }, 5000);
       }
     });
 
@@ -60,7 +82,6 @@ $(document).ready(function () {
       var email = $("#signUpemail").val();
       var password = $("#password").val();
       var level = $("#level").val();
-
 
       // Check if username, email, and password are already validated
       var usernameExists = userDatabase.find(
@@ -75,7 +96,13 @@ $(document).ready(function () {
       var mailExisted = userDatabase.find((user) => user.email === email);
 
       if (!$("#check").prop("checked")) {
-        alert("You need to agree on terms and conditions first!");
+        $("#show_alert").text(
+          "You need to agree on terms and conditions first!"
+        );
+        $(".main_alert").addClass("show_A");
+        setTimeout(() => {
+          $(".main_alert").removeClass("show_A");
+        }, 5000);
         return;
       }
 
@@ -86,7 +113,11 @@ $(document).ready(function () {
         mailExisted ||
         !$("#check").prop("checked")
       ) {
-        alert("Something went wrong! Please try again!");
+        $("#show_alert").text("Something went wrong. Please try again!");
+        $(".main_alert").addClass("show_A");
+        setTimeout(() => {
+          $(".main_alert").removeClass("show_A");
+        }, 5000);
         return; // Do not proceed with form submission
       }
 
@@ -102,19 +133,27 @@ $(document).ready(function () {
       // Update user database in local storage
       localStorage.setItem("userDatabase", JSON.stringify(userDatabase));
 
-      alert("Registration successful! You can now log in.");
-      $(".logreg-box").addClass("active");
-      $("#username").val("");
-      $("#signUpemail").val("");
-      $("#password").val("");
-      $("#level").val("");
+      $("#show_success").text(
+        "Registration successful! You can now log in into our website."
+      );
+      $(".main_success").addClass("show_S");
+      setTimeout(() => {
+        $(".main_success").removeClass("show_S");
+
+        $(".logreg-box").addClass("active");
+        $("#username").val("");
+        $("#signUpemail").val("");
+        $("#password").val("");
+        $("#level").val("");
+        $("#check").prop("checked", false);
+      }, 5000);
     });
   });
 
   // login starts
   $("#loginForm").submit(function (event) {
     event.preventDefault();
-    console.log("clicked registration");
+
     doSignInOperation(userDatabase);
   });
 
@@ -126,15 +165,14 @@ $(document).ready(function () {
 function doSignInOperation(userDatabase) {
   var email = $("#loginEmail").val();
   var password = $("#loginPsw").val();
-  console.log(email, password);
 
   // Check if the username exists in the user database and the password matches
   var user = userDatabase.find(
     (user) => user.email === email && user.password === password
   );
-  console.log(user);
+
   if (user) {
-    alert("Login successful!");
+  
     firstLetter = user.username[0].toUpperCase();
     //let userid = parseInt(user.userid.substring(2));
     localStorage.setItem(
@@ -156,13 +194,25 @@ function doSignInOperation(userDatabase) {
       document.cookie =
         "password=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
     }
-
-    window.location.href = "../HTML/start.html";
+    $("#show_success").text("Login Successful! Welcome to our Neon Website!");
+    $(".main_success").addClass("show_S");
+    setTimeout(() => {
+      $(".main_success").removeClass("show_S");
+      window.location.href = "./start.html";
+    }, 5000);
+  
   } else {
-    alert("Invalid username or password.");
+    $("#show_alert").text("Accocunt or password does not match!");
+    $(".main_alert").addClass("show_A");
+    setTimeout(() => {
+      $(".main_alert").removeClass("show_A");
+    }, 5000);
+
+    //reset
     $("#loginEmail").val("");
     $("#loginPsw").val("");
     $("#loginEmail").focus();
+    $("#rememberMe").prop("checked", false);
   }
 }
 

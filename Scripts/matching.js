@@ -85,39 +85,31 @@ function storePlyaerProgress() {
 
   let players = JSON.parse(localStorage.getItem("Players"));
 
-  // initialize player object
-  if (players == null) {
-    players = [
-      {
-        ID1: {
-          PlayerProgress: [
-            { gamedata: {} },
-            { learndata: {} },
-            { rankPoints: 0 },
-          ],
-        },
+ // initialize player object
+ if (players == null) {
+  players = [
+    {
+      ID1: {
+        PlayerProgress: [
+          { gamedata: [] },
+          { learndata: [] },
+          { rankPoints: 0 },
+        ],
       },
-    ];
-  }
+    },
+  ];
+}
   // get current player info
   let grade = localStorage.getItem("grade");
   let level = Number(localStorage.getItem("level index"));
   let mode = "game";
-  let game = {};
+
 
   // find player info
   let player = findPlayerByID(playerID, players);
   if (player != null) {
-    let playerHighestLevel = parseInt(player.PlayerProgress[0].gamedata.level);
-    if (level < playerHighestLevel) {
-      level = playerHighestLevel;
-    } else {
-      if(localStorage.getItem("IsLearningMode")== "false" && (level-1)!= playerHighestLevel) {
-        level += 1;
-      }
-    }
-    game.gamedata = { grade: grade, level: level, mode: mode };
-    player.PlayerProgress[0] = game;
+    let newEntry = { grade: grade, level: level+1, mode: "game" };
+    appendOrUpdateData(player.PlayerProgress, newEntry);
     currentPoints = parseInt(player.PlayerProgress[2].rankPoints);
     player.PlayerProgress[2] = { rankPoints: currentPoints + matching_score };
   } else {
@@ -125,8 +117,8 @@ function storePlyaerProgress() {
     let gamedata = { grade: grade, level: level, mode: mode };
     player[playerID] = {
       PlayerProgress: [
-        { gamedata: gamedata },
-        { learndata: {} },
+        { gamedata: [gamedata] },
+        { learndata: [] },
         { rankPoints: matching_score },
       ],
     };
@@ -149,6 +141,38 @@ function findPlayerByID(id, players) {
   // If ID is not found, return null
   return null;
 }
+
+// Function to append or update data in the learndata array based on grade and level
+function appendOrUpdateData(PlayerProgress, newData) {
+  // Check if learndata exists
+   // Check if learndata exists
+   if (PlayerProgress[0].gamedata) {
+    let existingEntryIndex = PlayerProgress[0].gamedata.findIndex(entry => entry.grade === newData.grade && entry.mode === newData.mode);
+
+    // If the grade doesn't exist or the new level is higher, append/update the new data
+    if (existingEntryIndex === -1 || PlayerProgress[0].gamedata[existingEntryIndex].level < newData.level) {
+        if (existingEntryIndex === -1) {
+            // If the grade doesn't exist, append the new data
+            PlayerProgress[0].gamedata.push(newData);
+            console.log("New data appended to learndata");
+        } else {
+            // If the grade exists but the new level is higher, update the existing entry
+            PlayerProgress[0].gamedata[existingEntryIndex] = newData;
+            console.log("Existing data updated in learndata");
+        } 
+    } else {
+        console.log("Level is not higher than the existing entry for the same grade and mode");
+    }
+  
+    return PlayerProgress;
+} else {
+    console.log("Gamedata does not exist");
+    return null; // Return null if learndata doesn't exist
+}
+}
+
+
+
 //============================================================================
 
 /**

@@ -18,7 +18,6 @@ $(document).ready(function () {
     kanjis = localStorage.getItem("level");
     kanjis = JSON.parse(kanjis);
     displayKanjiFlashCard(kanjis, currentState);
-  
   }
 
   /**
@@ -34,8 +33,8 @@ $(document).ready(function () {
     await fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        if(data.kun_readings.length > 5){
-          kun_readings = data.kun_readings.slice(0,5);
+        if (data.kun_readings.length > 5) {
+          kun_readings = data.kun_readings.slice(0, 5);
         }
         $("#meaning").text(data.meanings[0]);
         $("#kunyomi").text(kun_readings);
@@ -71,7 +70,9 @@ $(document).ready(function () {
       <source src="${videoURL}" type="video/mp4"> 
       Your browser does not support the video tag.
   </video>`);
-      $(".kanji_IMG").html(`<object type="image/svg+xml" data="${svgURL}" class="kanji_image" style="filter: invert(100%);"></object>`);
+      $(".kanji_IMG").html(
+        `<object type="image/svg+xml" data="${svgURL}" class="kanji_image" style="filter: invert(100%);"></object>`
+      );
     } catch (error) {
       console.error(error);
     }
@@ -97,7 +98,6 @@ $(document).ready(function () {
    * @param {*} kanjiWord
    */
   async function generateExampleSentences(kanjiWord, callback) {
-  
     const options = {
       method: "POST",
       headers: {
@@ -171,50 +171,55 @@ $(document).ready(function () {
         {
           ID1: {
             PlayerProgress: [
-              { gamedata: {} },
-              { learndata: {} },
+              { gamedata: [] },
+              { learndata: [] },
               { rankPoints: 0 },
             ],
           },
         },
       ];
     }
-
+    // current logged in player's progress
     let grade = localStorage.getItem("grade");
     let level = Number(localStorage.getItem("level index"));
     let mode = "learning";
-    let learn = {};
-   
+    //let learn = {};
+
     // find player info
     let player = findPlayerByID(playerID, players);
     if (player != null) {
-      let playerHighestLevel = parseInt(player.PlayerProgress[1].learndata.level);
-      if (level < playerHighestLevel) {
-        level = playerHighestLevel;
-      } else {
-        level += 1;
-      }
-      learn.learndata = { grade: grade, level: level, mode: mode };
-      player.PlayerProgress[1] = learn;
+      let newEntry = { grade: grade, level: level+1, mode: "learning" };
+      appendOrUpdateData(player.PlayerProgress, newEntry);
+      // // check grade existed
+      // let player_progress = player.PlayerProgress; // learn data
+      // console.log(player_progress);
+      // let newEntry = { grade: grade, level: level, mode: "learning" };
+      // let playerUpdateInfo = appendOrUpdateData(player_progress, newEntry);
+      // player.PlayerProgress[1] = playerUpdateInfo;
       currentPoints = parseInt(player.PlayerProgress[2].rankPoints);
       player.PlayerProgress[2] = { rankPoints: currentPoints + points };
-    
     } else {
       let player = {};
       let learndata = { grade: grade, level: level, mode: mode };
       player[playerID] = {
         PlayerProgress: [
-          { gamedata: {} },
-          { learndata: learndata },
+          { gamedata: [] },
+          { learndata: [learndata] },
           { rankPoints: points },
         ],
       };
       players.push(player);
-  
+      
     }
     localStorage.setItem("Players", JSON.stringify(players));
   }
 
+  /**
+   * find player by ID
+   * @param {*} id
+   * @param {*} players
+   * @returns
+   */
   function findPlayerByID(id, players) {
     for (let i = 0; i < players.length; i++) {
       for (let key in players[i]) {
@@ -228,6 +233,36 @@ $(document).ready(function () {
     return null;
   }
 
+  // Function to append or update data in the learndata array based on grade and level
+  function appendOrUpdateData(PlayerProgress, newData, points) {
+    // Check if learndata exists
+     // Check if learndata exists
+     if (PlayerProgress[1].learndata) {
+      let existingEntryIndex = PlayerProgress[1].learndata.findIndex(entry => entry.grade === newData.grade && entry.mode === newData.mode);
+
+      // If the grade doesn't exist or the new level is higher, append/update the new data
+      if (existingEntryIndex === -1 || PlayerProgress[1].learndata[existingEntryIndex].level < newData.level) {
+          if (existingEntryIndex === -1) {
+              // If the grade doesn't exist, append the new data
+              PlayerProgress[1].learndata.push(newData);
+              console.log("New data appended to learndata");
+          } else {
+              // If the grade exists but the new level is higher, update the existing entry
+              PlayerProgress[1].learndata[existingEntryIndex] = newData;
+              console.log("Existing data updated in learndata");
+          }
+      } else {
+          console.log("Level is not higher than the existing entry for the same grade and mode");
+      }
+      
+      // Return only the learndata part
+      return PlayerProgress;
+  } else {
+      console.log("Learndata does not exist");
+      return null; // Return null if learndata doesn't exist
+  }
+  }
+
   $("#sound").click(function () {
     var kanjiWord = $(this).parent().find("#kanji").text();
     playSound(kanjiWord);
@@ -238,21 +273,22 @@ $(document).ready(function () {
     if (currentState < kanjis.length) {
       displayKanjiFlashCard(kanjis, currentState);
     }
-  
-    if(isGenerateButtonClick){generateExampleBackToNormal();}
+
+    if (isGenerateButtonClick) {
+      generateExampleBackToNormal();
+    }
     if (currentState === kanjis.length) {
       $("#next").hide();
       storePlyaerProgress();
       setTimeout(() => {
-        window.location.href = "../HTML/LearningEndTemplate.html";
+         window.location.href = "../HTML/LearningEndTemplate.html";
       }, 1000);
-
     }
   });
 
   // Generate example sentences animation
   $("#generate-btn").click(function () {
-    isGenerateButtonClick  = true;
+    isGenerateButtonClick = true;
     const kanjiWord = $("#kanji").text().trim();
     if (kanjiWord) {
       generateExampleSentences(kanjiWord, function () {
@@ -279,23 +315,20 @@ $(document).ready(function () {
   });
 });
 
-
-function generateExampleBackToNormal(){
-
-    $(".read_btn").slideUp(1000, function () {
-      $(".read_btn").css("display", "block");
-    });
-    $(".read_txt").slideDown(1000, function () {
-      $(".read_txt").css("display", "block");
-    });
-    $(".egTXT").slideUp(1000, function () {
-      $(".egTXT").css("display", "block");
-    });
-    $(".show_txt").slideDown(4000, function () {
-      $(".show_txt").css("display", "none");
-    });
-    $(".next_txt").slideDown(4000, function () {
-      $(".next_txt").css("display", "none");
-    });
-
+function generateExampleBackToNormal() {
+  $(".read_btn").slideUp(1000, function () {
+    $(".read_btn").css("display", "block");
+  });
+  $(".read_txt").slideDown(1000, function () {
+    $(".read_txt").css("display", "block");
+  });
+  $(".egTXT").slideUp(1000, function () {
+    $(".egTXT").css("display", "block");
+  });
+  $(".show_txt").slideDown(4000, function () {
+    $(".show_txt").css("display", "none");
+  });
+  $(".next_txt").slideDown(4000, function () {
+    $(".next_txt").css("display", "none");
+  });
 }

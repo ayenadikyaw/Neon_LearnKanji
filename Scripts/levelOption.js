@@ -39,37 +39,43 @@ function splitlevels(data) {
  * @returns
  */
 function getPlayerProgress() {
+  console.log("reach here....");
   let playerList = JSON.parse(localStorage.getItem("Players")) || [];
   let playerID = JSON.parse(localStorage.getItem("CurrentUser")).id;
-  let progressInfo = findPlayerByID(playerID, playerList);
+  let player = findPlayerByID(playerID, playerList);
 
   let currentGrade = parseInt(localStorage.getItem("grade"));
   let isLearningMode = localStorage.getItem("IsLearningMode");
   let currentMode = isLearningMode == "true" ? "learning" : "game";
 
-  if (progressInfo != null) {
-    let player_progress = progressInfo.PlayerProgress;
-    if (
-      player_progress[1].learndata.level != undefined &&
-      currentMode == "learning" &&
-      currentGrade == parseInt(player_progress[1].learndata.grade)
-    ) {
-      level = player_progress[1].learndata.level;
-      return level;
-    } else if (
-      player_progress[0].gamedata.level != undefined &&
-      currentMode == "game" &&
-      currentGrade == parseInt(player_progress[0].gamedata.grade)
-    ) {
-      level = player_progress[0].gamedata.level;
-      return level;
+  if (player!= null) {
+    let player_progress = player.PlayerProgress;
+
+        // Find level based on grade and mode
+        let level = 0;
+        if (currentMode === "learning") {
+            // Find level in learndata
+            for (let entry of player_progress[1].learndata) {
+                if (parseInt(entry.grade) === currentGrade) {
+                    level = entry.level;
+                    break; // Exit loop once the level is found
+                }
+            }
+        } else {
+            // Find level in gamedata
+            for (let entry of player_progress[0].gamedata) {
+                if (parseInt(entry.grade) === currentGrade) {
+                    level = entry.level;
+                    break; // Exit loop once the level is found
+                }
+            }
+        }
+        return level;
     } else {
       return 0;
     }
-  } else {
-    return 0;
-  }
-}
+  } 
+
 
 function findPlayerByID(id, players) {
   for (let i = 0; i < players.length; i++) {

@@ -35,6 +35,7 @@ $(document).ready(function () {
   $("#box2").text(array[index2]);
 
   $("#next").click(function () {
+   $(this).hide(500);
     if(index2 <= array.length-2){
     doAnimation1(() => {
         // Animation 1 is complete, start Animation 2
@@ -74,7 +75,7 @@ async function doAnimation1(callback) {
 }
 
 
-async function doAnimation2() {
+async function doAnimation2(button) {
    await $('.storyGuide0').stop().animate({
         left: '+=350px',
     }, 4000);
@@ -91,4 +92,5 @@ async function doAnimation2() {
         right: '-=1300px',
     }, 4000);
 
+  $("#next").show(500);
 }
