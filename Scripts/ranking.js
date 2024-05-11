@@ -1,6 +1,8 @@
+$(document).ready(function() {
 // Retrieve data from local storage
 const playersData = JSON.parse(localStorage.getItem('Players'));
 const usersData = JSON.parse(localStorage.getItem('userDatabase'));
+
 
 // Parse JSON data
 const players = playersData.map(player => {
@@ -10,7 +12,6 @@ const players = playersData.map(player => {
     };
 });
 
-console.log(players);
 
 const users = usersData.reduce((acc, user) => {
     acc[user.userid] = user.username;
@@ -21,8 +22,36 @@ const users = usersData.reduce((acc, user) => {
 players.sort((a, b) => b.rankPoints - a.rankPoints);
 
 // Print leaderboard
-console.log("Leaderboard:");
 players.forEach((player, index) => {
-    console.log(`${index + 1}. ${users[player.id]} - Rank Points: ${player.rankPoints}`);
+    if(index < 3){
+        $("#leaderboard").append(`
+        <div class="user">
+            <i class="iconCircle">
+              <i class="fa-solid fa-ghost icon neon"></i>
+            </i>
+            <span>${users[player.id]}</span>
+            <span>${player.rankPoints} <span>points</span></span>
+            <span>Top</span><span>${index+1}</span>
+          </div>
+        
+        `);
+    }
+    else{
+        $("#leaderboard").append(`
+        <div class="user">
+        <i class="iconCircle">
+          <i class="fa-solid fa-ghost icon neon"></i>
+        </i>
+        <span>${users[player.id]}</span>
+        <span>${index+1}</span>
+      </div>
+        
+        `);
+
+    }
+ 
+
+   // console.log(`${index + 1}. ${users[player.id]} - Rank Points: ${player.rankPoints}`);
 });
 
+});

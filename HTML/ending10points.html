@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ending 10 Points</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../CSS/ending10Points.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="../Scripts/jquery3.6.0.js"></script>
+  </head>
+  <body>
+    <!-- bg effect started -->
+    <div class="ending10PointsBg"></div>
+    <!-- bg effect ended -->
+
+    <!-- polygon part started  -->
+    <div>
+      <div class="polygon">
+        <span style="--i: 0"></span>
+        <!-- :root{--1: 0;} -->
+        <span style="--i: 1"></span>
+        <span style="--i: 2"></span>
+        <span style="--i: 3"></span>
+      </div>
+    </div>
+    <!-- polygon part ended  -->
+
+    <!-- % started  -->
+    <div class="userPoint">
+      <p class="percentage">100%</p>
+    </div>
+
+    <!-- point  -->
+    <div class="txt_box">
+      <span class="shadow"></span>
+      <p class="info">You got full points !</p>
+      <p class="info"><span class="lvl">Level-1 </span>Completed!</p>
+    </div>
+    <!-- % ended  -->
+
+    <!--next started  -->
+
+    <div class="nextBtn" id="Next">
+      <div class="outer button">
+        <button>NEXT <ion-icon name="arrow-forward-outline"></ion-icon></button>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <!-- try and next started  -->
+    <script>
+      let level = parseInt(localStorage.getItem('Game mode level'))+1;
+      level = "Level-"+level+" ";
+      $(".lvl").text(level);
+      $("#Next").click(function () {
+        setTimeout(() => {
+          window.location.href = "../HTML/levelOption.html";
+        }, 200);      
+      });
+    </script>
+  </body>
+</html>

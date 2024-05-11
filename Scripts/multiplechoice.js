@@ -6,13 +6,15 @@ let correctAnswer;
 let correctCnt = 0;
 let score = 0;
 let isMatchingDone = false;
-const scoreTreshold = 70;
+const scoreTreshold = 7;
 let isReady = false;
-const points = 10 ; // rank points
+//const points = 10;
 /**
  * fetch kanji from local storage
  */
 window.onload = function () {
+  let userProfile = JSON.parse(localStorage.getItem("CurrentUser")).firstLetter;
+  $("#profile_txt").text(userProfile);
   fetchKanjis();
   collectMeanings(kanjis);
 };
@@ -23,8 +25,9 @@ $(document).ready(function () {
     var clickedButton = $(this);
     let userAns = clickedButton.find("span").text();
     // $(".answers").not(clickedButton).prop("disabled", true);
-    checkAnswer(userAns, correctAnswer);
+    checkAnswer(userAns, correctAnswer, clickedButton);
   });
+
 });
 
 /**
@@ -32,9 +35,8 @@ $(document).ready(function () {
  */
 function fetchKanjis() {
   kanjis = localStorage.getItem("level");
-  //console.log(kanjis);
   kanjis = JSON.parse(kanjis);
-  //console.log(typeof kanjis, kanjis, kanjis[0]);
+
 }
 
 /**
@@ -45,7 +47,7 @@ async function collectMeanings(kanjis) {
   const keys = Object.keys(kanjis);
   const fetchPromises = [];
   // Show the "data is still fetching" message
-  $("#QuesBox").text("Data is still fetching. Please wait ....");
+  $("#QuesBox").text("Please wait ....");
 
   for (let i = 0; i < keys.length; i++) {
     let url = "https://kanjiapi.dev/v1/kanji/" + kanjis[keys[i]];
@@ -99,7 +101,7 @@ async function prepareMCQ(index) {
   let choice1, choice2;
   if (meanings.length == kanjis.length) {
     correctAnswer = await meanings[selectedKanjiIndex[index]][0];
-    console.log(question, correctAnswer);
+
     // Fetch choice 1
     const rand1 = await getRandomIndex([index]);
     choice1 = await meanings[selectedKanjiIndex[rand1]][0];
@@ -160,27 +162,47 @@ function makeQuestion(question, answer, choice1, choice2) {
  * to check if user anwer is correct or not
  * @param {*} ans
  */
-function checkAnswer(ans) {
+function checkAnswer(ans, correctAnswer, button) {
   console.log(ans, correctAnswer);
   if (ans == correctAnswer) {
     correctCnt += 1;
-    $("#cross").hide().removeClass("animate");
-    setTimeout(() => {
-      $("#tick").show().addClass("animate");
-    }, 100);
 
-    moveToNext();
+    // $("#cross").hide().removeClass("animate");
+    // setTimeout(() => {
+    //   $("#tick").show().addClass("animate");
+    // }, 100);
+    button
+    .children()
+    .css(
+      "box-shadow",
+      "0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03"
+    );
+
+    moveToNext(button);
   } else {
-    $("#tick").hide().removeClass("animate");
-    setTimeout(() => {
-      $("#cross").show().addClass("animate");
-    }, 100);
-    moveToNext();
+    // $("#tick").hide().removeClass("animate");
+    // setTimeout(() => {
+    //   $("#cross").show().addClass("animate");
+    // }, 100);
+
+      button
+        .children()
+        .css(
+          "box-shadow",
+          "0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818"
+        );
+  
+
+    moveToNext(button);
   }
   //moveToNext();
 }
 
-function moveToNext() {
+function moveToNext(button) {
+  setTimeout(() => {
+    button.children().css("box-shadow", "none");
+  }, 1000);
+
   if (index < kanjis.length) {
     setTimeout(() => {
       $("#tick").hide();
@@ -191,14 +213,24 @@ function moveToNext() {
     //$(".answers").not(clickedButton).prop("disabled", false);
   } else {
     let playerScore = calculateScore(correctCnt);
-    if (playerScore >= scoreTreshold) {
+    localStorage.setItem("percentage", playerScore);
+    localStorage.setItem("correctAnswer", correctCnt);
+    if (correctCnt == 10) {
       setTimeout(() => {
-        alert("level unlocked");
+        window.location.href = "../HTML/ending10Points.html";
       }, 1000);
-
+      storePlyaerProgress();
+    } else if (correctCnt >= 1 && correctCnt <= 6) {
+      setTimeout(() => {
+        window.location.href = "../HTML/ending1to6Points.html";
+      }, 1000);
+    } else if (correctCnt >= 7 && correctCnt <= 9) {
+      setTimeout(() => {
+        window.location.href = "../HTML/ending7to9Points.html";
+      }, 1000);
       storePlyaerProgress();
     } else {
-      alert("Go back to learning page againg and try again");
+      console.log("Invalid correct");
     }
   }
 }
@@ -207,7 +239,7 @@ function moveToNext() {
  * @returns
  */
 function calculateScore(count) {
-  score = (count / kanjis.length) * 100;
+  let score = (count / kanjis.length) * 100;
   return score;
 }
 
@@ -225,24 +257,37 @@ function storePlyaerProgress() {
     players = [
       {
         ID1: {
-          PlayerProgress: [{ gamedata: {} }, { learndata: {} }],
+          PlayerProgress: [
+            { gamedata: {} },
+            { learndata: {} },
+            { rankPoints: 0 },
+          ],
         },
       },
     ];
   }
   // get current player info
   let grade = localStorage.getItem("grade");
-  let level = Number(localStorage.getItem("level index")) + 1;
+  let level = Number(localStorage.getItem("level index"));
   let mode = "game";
   let game = {};
   game.gamedata = { grade: grade, level: level, mode: mode };
   // find player info
   let player = findPlayerByID(playerID, players);
   if (player != null) {
+    let playerHighestLevel = parseInt(player.PlayerProgress[0].gamedata.level);
+    if (level < playerHighestLevel) {
+      level = playerHighestLevel;
+    }
+    else {
+      if(localStorage.getItem("IsLearningMode")== "false" && (level-1)!= playerHighestLevel) {
+      level += 1;
+    }
+    }
+    game.gamedata = { grade: grade, level: level, mode: mode };
     player.PlayerProgress[0] = game;
     currentPoints = parseInt(player.PlayerProgress[2].rankPoints);
-    player.PlayerProgress[2] = { rankPoints: currentPoints + points };
- 
+    player.PlayerProgress[2] = { rankPoints: currentPoints + score };
   } else {
     let player = {};
     let gamedata = { grade: grade, level: level, mode: mode };
@@ -250,7 +295,7 @@ function storePlyaerProgress() {
       PlayerProgress: [
         { gamedata: gamedata },
         { learndata: {} },
-        { rankPoints: points },
+        { rankPoints: score },
       ],
     };
     players.push(player);
@@ -259,6 +304,12 @@ function storePlyaerProgress() {
   localStorage.setItem("Players", JSON.stringify(players));
 }
 
+/**
+ * find the player is in player database
+ * @param {*} id 
+ * @param {*} players 
+ * @returns 
+ */
 function findPlayerByID(id, players) {
   for (let i = 0; i < players.length; i++) {
     for (let key in players[i]) {
@@ -271,4 +322,3 @@ function findPlayerByID(id, players) {
   // If ID is not found, return null
   return null;
 }
-

@@ -1,0 +1,365 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Delius", cursive;
+  box-sizing: border-box;
+  color: white;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+
+.section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../image/BG2.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(10px);
+}
+
+@keyframes animateBG {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Login and Registration Form */
+
+.container {
+  position: absolute;
+  width: 80%;
+  height: 550px;
+  background: url(../image/BG1.jpg) no-repeat;
+  animation: animateBG 5s linear infinite;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.container .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 58%;
+  height: 100%;
+  background-color: transparent;
+  padding: 80px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.content .logo {
+  font-size: 30px;
+}
+
+.logo ion-icon{
+    color: rgb(255, 80, 255);
+    font-size: 130%;
+  animation: animateBG 5s linear infinite;
+}
+
+.txt h2 {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.txt h2 span {
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+.txt p {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 25px;
+  text-align: justify;
+}
+
+.social a ion-icon {
+  margin-top: 10px;
+  font-size: 22px;
+  color: #b5b5b5;
+  margin-right: 10px;
+  transition: 0.5s ease;
+}
+
+.social a:hover ion-icon {
+  transform: scale(1.2);
+  color: white;
+}
+
+.container .logreg-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100% - 58%);
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.logreg-box .form-box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: 1px 5px 45px rgba(255, 87, 25, 0.214),
+    -1px -2px 45px rgba(223, 255, 17, 0.214);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.logreg-box .form-box.login {
+  transform: translateX(0);
+  transition: transform 0.6s ease;
+  transition-delay: 0.7s;
+}
+
+.logreg-box.active .form-box.login {
+  transform: translateX(510px);
+  transition-delay: 0s;
+}
+
+.logreg-box .form-box.register {
+  transform: translateX(510px);
+  transition: transform 0.6s ease;
+  transition-delay: 0s;
+}
+
+.logreg-box.active .form-box.register {
+  transform: translateX(0);
+  transition-delay: 0.7s;
+}
+
+.form-box h2 {
+  font-size: 32px;
+  text-align: center;
+}
+
+.form-box .input-box {
+  width: 340px;
+  height: 50px;
+  border-bottom: 2px solid white;
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  padding-right: 28px;
+}
+
+.input-box label {
+  position: absolute;
+  left: 80px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.input-box .icon {
+  position: absolute;
+  right: 80px;
+  font-size: 19px;
+}
+
+.form-box .remember-forgot {
+  font-size: 15px;
+  font-weight: bold;
+  margin: -15px 0 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.remember-forgot label input {
+  accent-color: rgb(91, 0, 91);
+  margin-right: 3px;
+}
+
+.remember-forgot a {
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  width: 100%;
+  height: 45px;
+  background: url(../image/cardBG.jpg);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn:active {
+    box-shadow: 2px 2px 7px rgb(255, 255, 255), -2px -2px 7px rgb(255, 255, 255);
+  }
+
+.form-box .login-register {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.login-register p a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-register p a:hover {
+  text-decoration: underline;
+}
+
+
+@media screen and (max-width: 1400px) {
+    .input-box label {
+        left: 60px;
+      }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .input-box label {
+        left: 35px;
+      }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .input-box label {
+        left: 15px;
+      }
+
+      .txt h2 {
+        font-size: 30px;
+        line-height: 1;
+      }
+      
+      .txt h2 span {
+        font-size: 20px;
+        letter-spacing: 1px;
+      }
+
+      .txt p {
+        font-size: 13px;
+      }
+  }
+  
+  @media screen and (max-width: 1100px) {
+    .input-box label {
+        left: 90px;
+      }
+
+      .input-box .icon {
+        right: 90px;
+      }
+
+      .container .content {
+       display: none;
+      }
+
+      .container .logreg-box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logreg-box .form-box.login {
+        transform: translateX(0);
+        transition: transform 0.6s linear;
+        transition-delay: 0.7s;
+      }
+      
+      .logreg-box.active .form-box.login {
+        transform: translateX(1000px);
+        transition-delay: 0s;
+      }
+      
+      .logreg-box .form-box.register {
+        transform: translateX(1000px);
+        transition: transform 0.6s linear;
+        transition-delay: 0s;
+      }
+      
+      .logreg-box.active .form-box.register {
+        transform: translateX(0);
+        transition-delay: 0.7s;
+      }                                          
+  }
+
+  @media screen and (max-width: 600px) {
+    .input-box label {
+        left: 25px;
+      }
+
+      .input-box .icon {
+        right: 25px;
+      }
+
+      .container .content {
+       display: none;
+      }
+
+      .container .logreg-box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+.logreg-box .form-box.login {
+  transform: translateX(0);
+  transition: transform 0.6s linear;
+  transition-delay: 0.7s;
+}
+
+.logreg-box.active .form-box.login {
+  transform: translateX(450px);
+  transition-delay: 0s;
+}
+
+.logreg-box .form-box.register {
+  transform: translateX(450px);
+  transition: transform 0.6s linear;
+  transition-delay: 0s;
+}
+
+.logreg-box.active .form-box.register {
+  transform: translateX(0);
+  transition-delay: 0.7s;
+}
+  }

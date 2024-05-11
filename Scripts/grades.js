@@ -12,8 +12,6 @@ async function fetchKanji(grade) {
     $(".spinner").css("display", "block");
 
     let url = "https://kanjiapi.dev/v1/kanji/grade-" + grade;
-    console.log(url);
-
     const response = await fetch(url);
     const data = await response.json();
 
@@ -33,13 +31,15 @@ $(document).ready(function () {
   let userProfile = JSON.parse(localStorage.getItem("CurrentUser")).firstLetter;
   $("#profile_txt").text(userProfile);
   $(".grades").click(function (event) {
-    event.preventDefault();
+     event.preventDefault();
     fetchKanji(this.id)
       .then(() => {
-        console.log("Fetched");
         localStorage.setItem("grade", this.id);
         window.location.href = "../HTML/LearningOrGame.html";
       })
       .catch((error) => console.log(error));
+  });
+  $(".profile").click(function () {
+    window.location.href = "../HTML/profile.html";
   });
 });

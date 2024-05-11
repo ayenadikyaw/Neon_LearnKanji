@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning End Template</title>
+    <link rel="stylesheet" href="../CSS/LearningEndTemplate.css" />
+    <script src="../Scripts/jquery3.6.0.js"></script>
+  </head>
+  <body>
+    <div class="section"></div>
+
+    <!-- Card -->
+
+    <div class="card" style="--clr1: #ff85be; --clr2: #00d0ff">
+      <div class="txt">
+        <h2>Congratulations!</h2>
+        <p>You have learned 10 kanji.</p>
+        <p>I hope you can memorize them.</p>
+        <p>Do you want to try next level? OR</p>
+        <p>Do you want to try the game for this level?</p>
+      </div>
+      <div class="lgbtn" id="lgbtn">
+        <span class="shadow"></span>
+        <a href="#">
+          <button class="btn">Learning or game</button>
+        </a>
+      </div>
+
+      <div class="clip">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <script>
+
+      $(".card").click(function(){
+        window.location.href = "../HTML/LearningOrGame.html";
+      });
+    </script>
+    
+  </body>
+</html>

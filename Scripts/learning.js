@@ -2,6 +2,8 @@ let currentState = 0; // to navigate to next or back
 let kanjis;
 let currentPoints = 0; // initial rank points
 const points = 10; // points of one rank point
+let kun_readings;
+let isGenerateButtonClick = false;
 /**
  * fetch kanji from local storage
  */
@@ -11,13 +13,12 @@ $(document).ready(function () {
   $("#profile_txt").text(userProfile);
 
   fetchKanjis();
-  $("#back").hide();
+  //$("#back").hide();
   function fetchKanjis() {
     kanjis = localStorage.getItem("level");
-    console.log(kanjis);
     kanjis = JSON.parse(kanjis);
     displayKanjiFlashCard(kanjis, currentState);
-    //console.log(kanjis, kanjis[0]);
+  
   }
 
   /**
@@ -33,8 +34,11 @@ $(document).ready(function () {
     await fetch(url)
       .then((res) => res.json())
       .then((data) => {
+        if(data.kun_readings.length > 5){
+          kun_readings = data.kun_readings.slice(0,5);
+        }
         $("#meaning").text(data.meanings[0]);
-        $("#kunyomi").text(data.kun_readings);
+        $("#kunyomi").text(kun_readings);
         $("#onyomi").text(data.on_readings);
         $("#stroke").text(data.stroke_count);
         displayKanjiVideo(word);
@@ -93,7 +97,7 @@ $(document).ready(function () {
    * @param {*} kanjiWord
    */
   async function generateExampleSentences(kanjiWord, callback) {
-    //console.log("reached");
+  
     const options = {
       method: "POST",
       headers: {
@@ -135,11 +139,6 @@ $(document).ready(function () {
         const translation = matches[3];
         //overlay loading ends
         $("#loadingOverlay").hide();
-        
-
-        console.log("Example Sentence:", exampleSentence);
-        console.log("Pronunciation:", pronunciation);
-        console.log("Translation:", translation);
         $("#example-sentences").html(
           `<p>${exampleSentence}</p>
           <p>${pronunciation}</p>
@@ -164,9 +163,6 @@ $(document).ready(function () {
    */
   function storePlyaerProgress() {
     let playerID = JSON.parse(localStorage.getItem("CurrentUser")).id;
-    // console.log(ID);
-    // let playerID = "ID" + ID;
-    // console.log("Player ID:", playerID);
     let players = JSON.parse(localStorage.getItem("Players"));
 
     // initialize player object
@@ -185,13 +181,20 @@ $(document).ready(function () {
     }
 
     let grade = localStorage.getItem("grade");
-    let level = Number(localStorage.getItem("level index")) + 1;
+    let level = Number(localStorage.getItem("level index"));
     let mode = "learning";
     let learn = {};
-    learn.learndata = { grade: grade, level: level, mode: mode };
+   
     // find player info
     let player = findPlayerByID(playerID, players);
     if (player != null) {
+      let playerHighestLevel = parseInt(player.PlayerProgress[1].learndata.level);
+      if (level < playerHighestLevel) {
+        level = playerHighestLevel;
+      } else {
+        level += 1;
+      }
+      learn.learndata = { grade: grade, level: level, mode: mode };
       player.PlayerProgress[1] = learn;
       currentPoints = parseInt(player.PlayerProgress[2].rankPoints);
       player.PlayerProgress[2] = { rankPoints: currentPoints + points };
@@ -207,7 +210,7 @@ $(document).ready(function () {
         ],
       };
       players.push(player);
-      // localStorage.setItem("Players", JSON.stringify(players));
+  
     }
     localStorage.setItem("Players", JSON.stringify(players));
   }
@@ -235,29 +238,21 @@ $(document).ready(function () {
     if (currentState < kanjis.length) {
       displayKanjiFlashCard(kanjis, currentState);
     }
-    if (currentState === 1) {
-      $("#back").show();
-    }
+  
+    if(isGenerateButtonClick){generateExampleBackToNormal();}
     if (currentState === kanjis.length) {
       $("#next").hide();
-      alert("You completed learning kanji words of current level.");
       storePlyaerProgress();
-    }
-  });
+      setTimeout(() => {
+        window.location.href = "../HTML/LearningEndTemplate.html";
+      }, 1000);
 
-  $("#back").click(function () {
-    currentState -= 1;
-    if (currentState > -1) {
-      displayKanjiFlashCard(kanjis, currentState);
     }
-    if (currentState === 0) {
-      $("#back").hide();
-    }
-    $("#next").show();
   });
 
   // Generate example sentences animation
   $("#generate-btn").click(function () {
+    isGenerateButtonClick  = true;
     const kanjiWord = $("#kanji").text().trim();
     if (kanjiWord) {
       generateExampleSentences(kanjiWord, function () {
@@ -278,4 +273,29 @@ $(document).ready(function () {
       console.log("No kanji word");
     }
   });
+
+  $(".profile").click(function () {
+    window.location.href = "../HTML/profile.html";
+  });
 });
+
+
+function generateExampleBackToNormal(){
+
+    $(".read_btn").slideUp(1000, function () {
+      $(".read_btn").css("display", "block");
+    });
+    $(".read_txt").slideDown(1000, function () {
+      $(".read_txt").css("display", "block");
+    });
+    $(".egTXT").slideUp(1000, function () {
+      $(".egTXT").css("display", "block");
+    });
+    $(".show_txt").slideDown(4000, function () {
+      $(".show_txt").css("display", "none");
+    });
+    $(".next_txt").slideDown(4000, function () {
+      $(".next_txt").css("display", "none");
+    });
+
+}

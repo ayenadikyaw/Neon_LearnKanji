@@ -11,4 +11,8 @@ $(document).ready(function () {
     localStorage.setItem("GameMode", "Matching");
     window.location.href = "../HTML/matchingGame.html";
   });
+  
+  $(".profile").click(function () {
+    window.location.href = "../HTML/profile.html";
+  });
 });

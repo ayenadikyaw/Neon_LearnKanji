@@ -5,6 +5,15 @@ $(document).ready(function () {
   var userDatabase = JSON.parse(localStorage.getItem("userDatabase")) || [];
   var userid = userDatabase.length;
   console.log(userid);
+
+  // Retriever user email and password to check if RememberMe is active
+  var storedEmail = getCookie('email');
+  var storedPassword = getCookie('password');
+  if (storedEmail && storedPassword) {
+      // Autofill the login form with stored username and password
+      document.getElementById('email').value = storedEmail;
+      document.getElementById('password').value = storedPassword;
+  }
  
 
   $("#username").change(function () {
@@ -86,4 +95,7 @@ $(document).ready(function () {
 
     alert("Registration successful! You can now log in.");
   });
+
+
+
 });

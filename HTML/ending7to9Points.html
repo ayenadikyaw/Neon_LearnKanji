@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ending 7 to 9 Points</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../CSS/ending7to9Points.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="../Scripts/jquery3.6.0.js"></script>
+  </head>
+  <body>
+    <!-- bg effect started -->
+    <div class="ending7to9PointsBg"></div>
+    <!-- bg effect ended -->
+
+    <!-- polygon part started  -->
+    <div>
+      <div class="polygon">
+        <span style="--i: 0"></span>
+        <!-- :root{--1: 0;} -->
+        <span style="--i: 1"></span>
+        <span style="--i: 2"></span>
+        <span style="--i: 3"></span>
+      </div>
+    </div>
+    <!-- polygon part ended  -->
+
+    <!-- % started  -->
+    <div class="userPoint">
+      <p class="percentage" id="percentage">90%</p>
+    </div>
+
+    <!-- point  -->
+    <div class="txt_box">
+      <span class="shadow"></span>
+      <p class="info">
+        You got <span class="points" id="point">9</span> points !
+      </p>
+    </div>
+    <!-- % ended  -->
+
+    <!-- try and next started  -->
+    <div class="tryAgainBtn" id="tryAgain">
+      <div class="outer button">
+        <button><ion-icon name="reload-outline"></ion-icon> Try Again</button>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="nextBtn" id="Next">
+      <div class="outer button">
+        <button>NEXT <ion-icon name="arrow-forward-outline"></ion-icon></button>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <!-- try and next started  -->
+    <script>
+      percentage = localStorage.getItem("percentage") + "%";
+      correctAnswer = localStorage.getItem("correctAnswer");
+      $("#percentage").text(percentage);
+      $("#point").text(correctAnswer);
+      // localStorage.removeItem("percentage");
+      // localStorage.removeItem("correctAnswer");
+      let mode = localStorage.getItem("GameMode");
+      $("#tryAgain").click(function () {
+        if (mode == "MCQ") {
+          window.location.href = "../HTML/multipleChoice.html";
+        } else {
+          window.location.href = "../HTML/matchingGame.html";
+        }
+      });
+      $("#Next").click(function () {
+        if (mode == "MCQ") {
+          window.location.href = "../HTML/LearningOrGame.html";
+        } else {
+          window.location.href = "../HTML/levelOption.html";
+        }
+      });
+    </script>
+  </body>
+</html>

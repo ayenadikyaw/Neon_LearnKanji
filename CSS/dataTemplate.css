@@ -1,0 +1,486 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Delius", cursive;
+  color: white;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background Image */
+.section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../image/BG8.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: animateBG 5s linear infinite;
+}
+
+@keyframes animateBG {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Three Cards */
+.container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+
+}
+
+.container .card {
+  position: relative;
+  width: 320px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+  backdrop-filter: blur(30px);
+  border-radius: 15px;
+}
+
+
+.container .card .content {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1000;
+  width: 100%;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+#s1,#s2,#s3,#s4,#s5{
+    font-size: 170%;
+    margin-top: 15px;
+    margin-right: 5px;
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 15px;
+}
+
+#s1{
+    background: #e91818;
+    box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
+  }
+
+#s2{
+    background: #ffbc00;
+    box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
+  }
+
+#s3{
+    background: #4dff03;
+    box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
+  }
+
+#s4{
+    background: #00fbff;
+    box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
+  }
+
+#s5{
+    background: #a803f4;
+    box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
+  }
+
+.fb,.login{
+background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  padding: 10px;
+  border-radius: 10px;
+  width: 75%;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.fb a,.login a{
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.shadow {
+    position: absolute;
+    inset: 5px;
+    background: rgba(0, 255, 234, 0.2);
+    box-shadow: inset 0 10px 20px rgba(0, 217, 255, 0.5);
+    border-radius: 10px;
+  }
+
+  .social a ion-icon {
+    margin-top: 10px;
+    font-size: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
+    transition: 0.5s ease;
+  }
+
+  
+  .social a:nth-child(1) ion-icon{
+    color: #1303f4;
+  }
+
+  .social a:nth-child(2) ion-icon{
+    color: #ff2270;
+  }
+
+  .social a:nth-child(3) ion-icon{
+    color: #728eff;
+  }
+
+  .social a:nth-child(4) ion-icon{
+    color: #1303f4;
+  }
+  
+  .social a:hover ion-icon {
+    transform: scale(1.2);
+    color: white;
+  }
+
+  .login{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffbc00;
+  }
+
+ .login ion-icon{
+    font-size: 25px;
+    font-weight: bold;
+    color: #00eeff;
+ }
+
+.clip {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 1px 5px 45px rgba(0, 213, 255, 0.214),
+    -1px -2px 45px rgba(0, 213, 255, 0.214);
+  border: 2px solid transparent;
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: 0.5s;
+  display: none;
+ 
+}
+
+.clip .close ion-icon {
+  color: #ffbc00;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 30px;
+}
+
+/* Display Example Sentence */
+.read_btn {
+  position: relative;
+  top: -15px;
+}
+
+.read_btn .read_img {
+  width: 100%;
+}
+
+.read_txt {
+  position: absolute;
+  left: 135px;
+  top: 230px;
+  font-size: 115%;
+  color: black;
+  font-weight: bold;
+}
+
+.egTXT {
+  position: absolute;
+  top: 280px;
+  font-weight: bold;
+color: #00aeff;
+font-size: 25px;
+}
+
+.leaderboard{
+    position: absolute;
+    top: 10%;
+    left: 27.5%;
+    width: 45%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.216);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.823);
+}
+
+.leaderboard:after{
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff;
+    z-index: -2;
+    filter: blur(100px);
+}
+
+.leaderboard:before,
+.leaderboard:after{
+    background: linear-gradient(235deg, #89ff00, #060c21, #00bcd4);
+}
+
+.heading{
+    padding: 20px;
+    box-sizing: border-box;
+    color: #ffbc00;
+    font-size: 25px;
+}
+
+.scrollBar {
+    color: white;
+    width: 80%;
+    height: 450px;
+    overflow: auto;
+    position: absolute;
+  text-align: justify;
+   padding:0 30px;
+  border-radius: 10px;
+  top: 30%;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    animation: animateBG 5s linear infinite;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent, cyan, transparent);
+    border-radius: 2px;
+    animation: animateBG 5s linear infinite;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(transparent, pink, transparent);
+}
+
+.scrollBar h2{
+    color: #ffbc00;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.scrollBar p::before{
+    content:'»';
+    color: #ffbc00;
+    font-size: 25px;
+
+}
+
+.scrollBar p{
+    margin-bottom: 5px;
+    letter-spacing: 1.5px;
+}
+
+ /* Back Button */
+ .back_btn {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50px;
+  left: 90px;
+  border-radius: 50%;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  transition: 1s;
+}
+
+.back_btn a{
+  text-decoration: none;
+} 
+
+.back_btn ion-icon {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  color: #00d0ff;
+}
+
+.back_btn:hover {
+  animation: back_animation 5s linear infinite;
+}
+
+.back_btn:hover ion-icon {
+  color: #333;
+}
+
+
+@media screen and (max-width : 1100px) {
+  .container{
+    width: 100vw;
+    display: flex;
+    left: 0;
+    padding: 0;
+    height: 100vh;
+  } 
+
+  .container .card {
+    width: 210px;
+    height: 300px;
+    padding: 0;
+    margin: 10px;
+  }
+
+  .social a ion-icon {  
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: 0px;
+  }
+
+  #s1,#s2,#s3,#s4,#s5{
+    font-size: 100%;
+    margin-top: 0px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+.fb,.login{
+      margin-top: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 5px;
+    }
+
+.read_btn {
+  position: absolute;
+  top: -7px;
+  left: -10px;
+}
+
+.read_btn .read_img {
+  width: 100%;
+}
+
+.read_txt {
+  left: 80px;
+  top: 130px;
+}
+
+.egTXT {
+  position: absolute;
+  top: 170px;
+  font-weight: bold;
+}
+
+.container .card .content {
+  padding: 20px;
+  line-height: 30px;
+  cursor: pointer;
+  font-size: 80%;
+}
+.heading{
+  font-size: 18px;
+}
+
+}
+
+
+@media screen and (max-width : 700px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+  } 
+
+  .container .card {
+    width: 300px;
+    height: 190px;
+  }
+
+  .play {
+    top: -30px;
+    left: -80px;
+  }
+
+.read_btn {
+  top: -30px;
+  left: 40px;
+}
+
+.read_btn .read_img {
+  width: 80%;
+}
+
+.read_txt {
+  left: 125px;
+  top: 90px;
+}
+
+.egTXT {
+  position: absolute;
+  top: 130px;
+  font-weight: bold;
+}
+
+.back_btn{
+  top: 30px;
+  left: 10px;
+}
+
+#s1,#s2,#s3,#s4,#s5{
+    margin-bottom: 0px;
+}
+.fb,.login{
+      margin-bottom: 0px;
+      padding: 5px;
+    }
+
+.container .card .content {
+  padding: 20px;
+  line-height: 30px;
+  cursor: pointer;
+  font-size: 70%;
+}
+
+.heading{
+  font-size: 11px;
+}
+
+}

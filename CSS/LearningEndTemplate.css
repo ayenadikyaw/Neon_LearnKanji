@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Delius", cursive;
+  color: #333;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background Image */
+.section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../image/BG4.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: animateBG 5s linear infinite;
+}
+
+@keyframes animateBG {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* card and button */
+
+.card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  font-size: 100%;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;  
+  top: 130px;
+  width: 500px;
+  height: 370px;
+  background: var(--clr1);
+  box-shadow: 0 0 0 5px #0009, 0 10px 65px var(--clr1);
+  transition: 0.25s;
+  border-radius: 10px;
+  animation: animateBG 5s linear infinite;
+}
+
+.card:hover {
+  background: var(--clr2);
+  box-shadow: 0 0 0 5px #0009, 0 10px 45px var(--clr2), 0 10px 95px var(--clr2);
+}
+
+.card .txt {
+  scale: 0;
+  transition: 0.5s;
+}
+
+.card:hover .txt {
+  scale: 1;
+}
+
+.card .clip {
+  position: absolute;
+  inset: 5px;
+  box-shadow: 0 0 0 2px rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+.card .clip span {
+  position: absolute;
+  inset: 0;
+  background-image: url(../image/cardBG3.png);
+  animation: animateBG 5s linear infinite;
+  transition: 0.25s;
+  z-index: 100;
+  border-radius: 10px;
+}
+
+.card .clip span:nth-child(1) {
+  clip-path: polygon(49% 49%, 0 0, 0 99%);
+}
+
+.card .clip span:nth-child(2) {
+  clip-path: polygon(49% 49%, 0 100%, 99% 100%);
+}
+
+.card .clip span:nth-child(3) {
+  clip-path: polygon(49% 49%, 100% 100%, 100% 0);
+}
+
+.card .clip span:nth-child(4) {
+  clip-path: polygon(49% 49%, 99% 0, 1% 0);
+}
+
+.card:hover .clip span:nth-child(1) {
+    clip-path: polygon(0 0, 0 10%, 10% 1%);
+  }
+  
+  .card:hover .clip span:nth-child(2) {
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+  
+  .card:hover .clip span:nth-child(3) {
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+  
+  .card:hover .clip span:nth-child(4) {
+    clip-path: polygon(0 0, 0 0, 0 0);
+  }
+
+.lgbtn{
+  margin-top: 10px;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  border-radius: 10px;
+  scale: 0;
+  transition: 0.5s;
+}
+
+.btn {
+  width: 200px;
+  height: 50px;
+  border: none;
+  outline: none;
+  inset: 10px;
+  color: white;
+  text-transform: capitalize;
+ background-color: transparent;
+}
+
+.shadow {
+  position: absolute;
+  border-radius: 10px;
+  inset: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover .lgbtn {
+  scale: 1;
+}

@@ -82,6 +82,7 @@ body {
   perspective: 1000px; /* 3d postion ယူဖို့ */
   transform: all 0.5s;
   margin: 0 40px;
+  cursor:pointer;
 }
 
 .area:hover {

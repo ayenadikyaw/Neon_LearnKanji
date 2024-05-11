@@ -1,12 +1,14 @@
 let listOfKanjiLevels;
 
-
 // fetch kanji list
 window.onload = getKanjiList;
 
-$(document).ready(function() {
+$(document).ready(function () {
   let userProfile = JSON.parse(localStorage.getItem("CurrentUser")).firstLetter;
   $("#profile_txt").text(userProfile);
+  $(".profile").click(function () {
+    window.location.href = "../HTML/profile.html";
+  });
 });
 /**
  * fetch kanji list from local storage
@@ -34,37 +36,39 @@ function splitlevels(data) {
 
 /**
  * get player progress stored in localStorage
- * @returns 
+ * @returns
  */
 function getPlayerProgress() {
-  let playerList = JSON.parse(localStorage.getItem("Players"))|| [];
+  let playerList = JSON.parse(localStorage.getItem("Players")) || [];
   let playerID = JSON.parse(localStorage.getItem("CurrentUser")).id;
-  let progressInfo = findPlayerByID(playerID,playerList);
+  let progressInfo = findPlayerByID(playerID, playerList);
 
-  console.log(progressInfo, "message");
   let currentGrade = parseInt(localStorage.getItem("grade"));
   let isLearningMode = localStorage.getItem("IsLearningMode");
-  let currentMode = (isLearningMode=="true")? "learning":"game";
+  let currentMode = isLearningMode == "true" ? "learning" : "game";
 
-  if (progressInfo!=null) {
+  if (progressInfo != null) {
     let player_progress = progressInfo.PlayerProgress;
-    if (player_progress[1].learndata.level!= undefined && currentMode == "learning" && currentGrade == parseInt(player_progress[1].learndata.grade)){
+    if (
+      player_progress[1].learndata.level != undefined &&
+      currentMode == "learning" &&
+      currentGrade == parseInt(player_progress[1].learndata.grade)
+    ) {
       level = player_progress[1].learndata.level;
       return level;
-    }
-    else if(player_progress[0].gamedata.level!= undefined && currentMode == "game" && currentGrade == parseInt(player_progress[0].gamedata.grade)){
+    } else if (
+      player_progress[0].gamedata.level != undefined &&
+      currentMode == "game" &&
+      currentGrade == parseInt(player_progress[0].gamedata.grade)
+    ) {
       level = player_progress[0].gamedata.level;
       return level;
-    }
-    else{
+    } else {
       return 0;
     }
-    
   } else {
     return 0;
   }
-
-
 }
 
 function findPlayerByID(id, players) {
@@ -88,20 +92,23 @@ function findPlayerByID(id, players) {
  */
 function splitObjectIntoArrays(obj, size) {
   const keys = Object.keys(obj);
-  console.log(keys, "keys");
   const result = [];
   for (let i = 0; i < keys.length; i += size) {
     const currentLevel = keys.slice(i, i + size).map((key) => obj[key]);
-    
+
     // Check if the last level has fewer than 5 words
-    if (i + size >= keys.length && currentLevel.length < 5 && result.length > 0) {
+    if (
+      i + size >= keys.length &&
+      currentLevel.length < 5 &&
+      result.length > 0
+    ) {
       // Append the remaining words to the previous level
-      result[result.length - 1] = result[result.length - 1].concat(currentLevel);
+      result[result.length - 1] =
+        result[result.length - 1].concat(currentLevel);
     } else {
       result.push(currentLevel);
     }
   }
-  console.log("result is", result);
   return result;
 }
 
@@ -118,7 +125,7 @@ function generateLevelButtons(levels, playerProgress) {
       `<p class="level"><span>Level ${index + 1}</span><i></i></p>`
     );
     button.addClass("disabled");
-    // level lock mechanism 
+    // level lock mechanism
     if (index > playerProgress) {
       button.addClass("disabled");
     } else {
@@ -136,17 +143,14 @@ function generateLevelButtons(levels, playerProgress) {
  * @param {*} level
  */
 function handleButtonClick(index, level) {
-  console.log("handleButtonClick");
   // Store player's progress in local storage
   let learningMode = localStorage.getItem("IsLearningMode");
-  console.log("IsLearningMode", learningMode);
   localStorage.setItem("level", JSON.stringify(level));
   localStorage.setItem("level index", index); // initialize player progress index in local storage
   if (learningMode == "true") {
     localStorage.setItem("learning mode level", index); // initialize player's learning level in local storage
     window.location.href = "../HTML/learningTemplate.html";
   } else {
-    console.log("Reach here game");
     localStorage.setItem("Game mode level", index); // initialize player's game level in local storage
     window.location.href = "../HTML/gameTemplate.html";
   }

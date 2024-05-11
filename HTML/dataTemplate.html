@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Template</title>
+    <link rel="stylesheet" href="../CSS/dataTemplate.css" />
+    <script src="../Scripts/jquery3.6.0.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <div class="section"></div>
+    <!-- Back Button -->
+    <div class="back_btn">
+      <a href="./LearningOrGame.html"><ion-icon name="return-up-back-outline"></ion-icon></a>
+    </div>
+
+    <!-- Three Cards -->
+    <div class="container">
+      <!-- 1st Card -->
+      <div class="card">
+        <div class="content">
+          <h2>Subscribe Here :</h2>
+          <div class="login" id="login">
+            <span class="shadow"></span>
+            <a href="#">Login <ion-icon name="log-in-outline"></ion-icon></a>
+          </div>
+          <div class="login" id="profile">
+            <span class="shadow"></span>
+            <a href="#"
+              >Profile <ion-icon name="person-circle-outline"></ion-icon
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- 2nd Card -->
+      <div class="card">
+        <div class="content">
+          <!-- Read Button -->
+          <div class="egBTN">
+            <div class="read_btn">
+              <img src="../image/watchIMG.png" alt="cartoon" class="read_img" />
+            </div>
+            <div class="read_txt">READ</div>
+          </div>
+          <div class="egTXT">Neon's Guideline</div>
+        </div>
+      </div>
+      <!-- 3rd Card -->
+      <div class="card">
+        <div class="content">
+          <h2>Rate Us :</h2>
+          <p>
+            <ion-icon name="star" id="s1"></ion-icon>
+            <ion-icon name="star" id="s2"></ion-icon>
+            <ion-icon name="star" id="s3"></ion-icon>
+            <ion-icon name="star" id="s4"></ion-icon>
+            <ion-icon name="star" id="s5"></ion-icon>
+          </p>
+          <h2>Support Us :</h2>
+          <div class="fb" id="feedbackButton">
+            <span class="shadow"></span>
+            <a href="#">SEND FEEDBACK</a>
+          </div>
+          <h2>Social Apps :</h2>
+          <div class="social">
+            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clip">
+      <div class="leaderboard">
+        <div class="heading">
+          <h1>Neon’s Guideline</h1>
+        </div>
+      </div>
+      <b class="close"><ion-icon name="close-circle"></ion-icon></b>
+      <div class="scrollBar glass">
+        <h2>Rooms</h2>
+        <p>
+          There are Four rooms which are Learning Room, Game Room, LeaderBoard
+          Room and Data Room. The main rooms are Learning Room and Game Room.
+        </p>
+        <h2>Grades</h2>
+        <p>
+          Neon is provided from Grade - 1 to Grade 6. You can join any grade you
+          want to study and learn kanji by level.
+        </p>
+        <h2>Levels</h2>
+        <p>
+          As for how many levels can be studied, the number of levels may vary
+          depending on each grade, so there is no specifi c number of levels.
+          All levels except the 1st level will be locked, so you need to pass
+          each level.
+        </p>
+        <h2>Learning</h2>
+        <p>
+          You can learn all the kanji in the Learning room. It provided for each
+          kanji which are the meaning, pronunciation, the writing method and the
+          example sentence. It arranged 10 kanji for each level.
+        </p>
+        <h2>Games</h2>
+        <p>
+          The game room will help you how you can test how many of the kanji you
+          have memorized. There are two types of game which are matching game
+          and multiple choice game.
+        </p>
+        <h2>Login & Registration</h2>
+        <p>
+          Registration Form is that need to know your email and your level of
+          JLPT. When neon will have new features, it will inform you via Email.
+          By registration, you can manipulate all features of neon website. If
+          you already register, you can login easily.
+        </p>
+        <h2>The Results of Game</h2>
+        <p>
+          When you play the game, you need to answer 10 questions. If you can
+          answer 7 or more questions, the next level will be unlocked
+          automatically. If you can only answer questions 1 to 6, the next level
+          will not unlock. As a reason you can answer the same level and study
+          again
+        </p>
+        <h2>The Ambition</h2>
+        <p>
+          Neon aims to learn all the kanji in one place and make it easy to
+          remember all the kanji.
+        </p>
+        <h2>Fees</h2>
+        <p>
+          Neon provide all features by fees free. You don’t have to cost for
+          anything.
+        </p>
+      </div>
+    </div>
+    <script>
+      $(".egBTN").click(function () {
+        $(".clip").css("display", "flex");
+      });
+      $(".close").click(function () {
+        $(".clip").css("display", "none");
+      });
+      $("#login").click(function () {
+        window.location.href= "../HTML/login&Register.html";
+      });
+      $("#profile").click(function () {
+        window.location.href= "../HTML/profile.html";
+      });
+
+    $('#feedbackButton').click(function() {
+        var emailSubject = encodeURIComponent("Feedback"); // Encode subject
+        var emailBody = encodeURIComponent("Type your feedback here..."); // Encode body
+        var mailtoLink = "mailto:neonkanjilearning@neon.com?subject=" + emailSubject + "&body=" + emailBody;
+        window.location.href = mailtoLink;
+    });
+    </script>
+  </body>
+</html>
