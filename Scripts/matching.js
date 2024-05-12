@@ -114,7 +114,7 @@ function storePlyaerProgress() {
     player.PlayerProgress[2] = { rankPoints: currentPoints + matching_score };
   } else {
     let player = {};
-    let gamedata = { grade: grade, level: level, mode: mode };
+    let gamedata = { grade: grade, level: level+1, mode: mode };
     player[playerID] = {
       PlayerProgress: [
         { gamedata: [gamedata] },

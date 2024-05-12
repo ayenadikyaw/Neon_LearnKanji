@@ -105,7 +105,7 @@ $(document).ready(function () {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        "X-RapidAPI-Key": "ec47961e74msh944ac542fab6cbap13f738jsn567dc3f1a211",
+        "X-RapidAPI-Key": "7cfb400fa6msh803cd1333e9fe26p1ab998jsn28599e3b2014",
         "X-RapidAPI-Host": "chatgpt-42.p.rapidapi.com",
       },
       body: JSON.stringify({
@@ -203,7 +203,7 @@ $(document).ready(function () {
       player.PlayerProgress[2] = { rankPoints: currentPoints + points };
     } else {
       let player = {};
-      let learndata = { grade: grade, level: level, mode: mode };
+      let learndata = { grade: grade, level: level+1, mode: mode };
       player[playerID] = {
         PlayerProgress: [
           { gamedata: [] },
@@ -286,7 +286,7 @@ $(document).ready(function () {
       storePlyaerProgress();
       setTimeout(() => {
          window.location.href = "../HTML/LearningEndTemplate.html";
-      }, 1000);
+      }, 3000);
     }
   });
 

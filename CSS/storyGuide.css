@@ -15,7 +15,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../image/storyGuideBg.jpg);
+    background-image: url(../image/BG10.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -47,7 +47,7 @@ h6{
     transform: translateX(-100px);
     animation: storyGuide1 5s ease-in-out;
     right: 0;
-    bottom: 30%;
+    bottom: 20%;
 }
 
 @keyframes storyGuide0{
@@ -72,10 +72,10 @@ h6{
     color: cyan;
 
     position: absolute;
-    top: 10%;
+    top: 15%;
 
     width: 65%;
-    height: 100px;
+    height: 160px;
 
     display: flex;
     justify-content: center;
@@ -133,7 +133,7 @@ h6{
     position: absolute;
     top: 50%;
     width: 65%;
-    height: 100px;
+    height: 190px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -179,8 +179,15 @@ a{
 
 .nextBtn {
     position: absolute;
-    bottom: 15%;
-    right: 40%;
+    bottom: 7%;
+    left: 50%;
+    animation: nextBtn 4s ease-in-out;
+    transform: translateY(0px) scale(1.1);
+}
+.skipBtn {
+    position: absolute;
+    bottom: 7%;
+    right: 35%;
     animation: nextBtn 4s ease-in-out;
     transform: translateY(0px) scale(1.1);
 }
@@ -237,6 +244,13 @@ a span{
         transform: translateX(100px);
     }
 }
+@media screen and (max-width: 1500px) {
+.skipBtn {
+    right: 4%;
+}
+.nextBtn {
+    left: 30%;
+}}
 
 @media screen and (max-width: 1200px) {
 
@@ -258,6 +272,12 @@ a span{
         100%{
             transform: translateX(10px);
         }
+    }
+    .skipBtn {
+        right: 4%;
+    }
+    .nextBtn {
+        left: 30%;
     }
 }
 
@@ -321,5 +341,11 @@ a span{
     100%{
         transform: translateX(-10px);
     }
+}
+.nextBtn {
+    left: 50%;
+}
+.skipBtn {
+    right: 3%;
 }
 }

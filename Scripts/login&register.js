@@ -202,7 +202,7 @@ function doSignInOperation(userDatabase) {
     }, 5000);
   
   } else {
-    $("#show_alert").text("Accocunt or password does not match!");
+    $("#show_alert").text("Account does not exists or Accocunt or password does not match!");
     $(".main_alert").addClass("show_A");
     setTimeout(() => {
       $(".main_alert").removeClass("show_A");

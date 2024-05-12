@@ -1,319 +1,302 @@
 @import url("https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    font-family: "Delius", cursive;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Delius", cursive;
 }
 
-body{
-    overflow: hidden;
+:root {
+  --body_bgLight: url(../image/BG1.jpg);
+  --profile_txtLight: #00d9ff;
+  --profile_borderLight: 3px solid rgb(0, 200, 255);
+  --line_borderLight: 1px rgb(0, 200, 255) solid;
+  --input_txtLight: rgb(0, 200, 255);
+  --btn_bgLight: rgb(0, 200, 255);
+
+  --body_bgColor: var(--body_bgLight);
+  --profile_txtColor: var(--profile_txtLight);
+  --profile_borderColor: var(--profile_borderLight);
+  --line_borderColor: var(--line_borderLight);
+  --input_txtColor: var(--input_txtLight);
+  --btn_bgColor: var(--btn_bgLight);
 }
 
-.profileBg{
-    width: 100vw; /* width of the viewport size */
-    height: 100vh; /* height of the viewport size */
-    background-image: url(../image/BG4.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    animation: animateBG 5s linear infinite;
-
+body {
+  width: 100vw; /* width of the viewport size */
+  height: 100vh;
+  background: var(--body_bgColor);
+  transition: background-color 0.3s, color 0.3s;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-@keyframes animateBG{
-    100%{
-        filter: hue-rotate(360deg);
-    }
+.container {
+  width: 450px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  backdrop-filter: blur(13px);
 }
 
-.profileBox{
-    position: absolute;
-    top: 5%;
-    left: 40%;
-    color: cyan;
-
-    width: 20%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #060c21;
-    z-index: 1;
-    border-radius: 20px;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 10px;
 }
 
-.box:after{
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: #fff;
-    z-index: -2;
-    filter: blur(40px);
-    z-index: 1;
+.profile_info {
+  color: var(--profile_txtColor);
+  text-align: center;
 }
 
-.box:before,
-.box:after{
-    z-index: inherit;
-    background: linear-gradient(235deg, #89ff00, #060c21, #00bcd4);
+.header .profile {
+  width: 90px;
+  border-radius: 50%;
+  border: var(--profile_borderColor);
 }
 
-.content{
-    padding: 20px;
-    color: cyan;
+.line {
+  width: 100%;
+  border: var(--line_borderColor);
+  margin-bottom: 20px;
 }
 
-.container{
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    color: cyan;
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* glass effect */
-.glass{
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+input[type="text"] {
+  width: 270px;
+  height: 60px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(0, 200, 255);
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 15px;
+  color: var(--input_txtColor);
+  margin-left: 25px;
+  background: transparent;
 }
 
-.userImg{
-    position: absolute;
-    top: 25%;
-    left: 10%;
-    width: 400px;
+input[type="password"] {
+  padding-left: 20px;
+  width: 270px;
+  height: 60px;
+  margin-bottom: 30px;
+  border: 1px solid rgb(0, 200, 255);
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 15px;
+  color: var(--input_txtColor);
+  background: transparent;
+  margin-left: 25px;
 }
 
-input{
-    width: 150px;
-    font-size: 16px;
-    background: none;
-    border: none;  
-    margin-bottom: 10px;
+input[type="email"] {
+  padding-left: 20px;
+  width: 270px;
+  height: 60px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(0, 200, 255);
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--input_txtColor);
+  background: transparent;
+  margin-left: 25px;
 }
 
-.userGmail, .userLevel, .userName, .userPassword{
-    background: cyan;
-    animation: animateBG 5s linear infinite;
-    width: 300px;
-    height: 50px;
-    padding-left: 10px;
-    border-radius: 20px;
-    color: #060c21;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
+input[type="text"] + ion-icon {
+  position: absolute;
+  left: 10%;
+  margin-top: 20px;
+  font-size: 20px;
+  color: var(--input_txtColor);
 }
 
-.user{
-    margin-bottom: 20px;
-    margin-left: 50%;
+input[type="password"] + ion-icon {
+  position: absolute;
+  left: 10%;
+  margin-top: 25px;
+  font-size: 20px;
+  color: var(--input_txtColor);
 }
 
-.userName{
-    margin-top: 5%;
+input[type="email"] + ion-icon {
+  position: absolute;
+  left: 10%;
+  margin-top: 25px;
+  font-size: 20px;
+  color: var(--input_txtColor);
 }
 
-.info{
-    position: relative;
-}
-.eye{
-    position: absolute;
-    right: 20px;    
-}
-
-.saveBtn .save{
-    width: 250px;
-    padding: 20px;
-    background: #060c21;
-    text-align: center;
-    border-radius: 20px;
-    position: absolute;
-    bottom: 25%;
-    right: 27%;
-    border: none;
-    color: #00bcd4;
+.btn {
+  width: 150px;
+  height: 50px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--btn_bgColor);
+  color: var(--btn_txtColor);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 15px;
 }
 
-.saveBtn .save:active{
-    transform: scale(1.1);
-}
+/* for notifications*/
 
-.icon{
-    color: white;
-    
+.notifications {
+  position: fixed;
+  top: 30px;
+  right: 20px;
 }
-
-.neon{
-    text-shadow: 0 0 10px #fff,
-                0 0 40px #d400ff,
-                0 0 70px #d400ff;
-    animation: animateBG 5s linear infinite;  
+.toast {
+  position: relative;
+  padding: 10px;
+  color: #fff;
+  margin-bottom: 10px;
+  width: 400px;
+  display: grid;
+  grid-template-columns: 70px 1fr 70px;
+  border-radius: 5px;
+  --color: #0abf30;
+  background-image: linear-gradient(to right, #0abf3055, #22242f 30%);
+  animation: show 0.3s ease 1 forwards;
+}
+.toast i {
+  color: var(--color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+}
+.toast .title {
+  font-size: x-large;
+  font-weight: bold;
+}
+.toast span,
+.toast i:nth-child(3) {
+  color: #fff;
+  opacity: 0.6;
+}
+@keyframes show {
+  0% {
+    transform: translateX(100%);
+  }
+  40% {
+    transform: translateX(-5%);
+  }
+  80% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-10%);
+  }
+}
+.toast::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color);
+  width: 100%;
+  height: 3px;
+  content: "";
+  box-shadow: 0 0 10px var(--color);
+  animation: timeOut 5s linear 1 forwards;
+}
+@keyframes timeOut {
+  to {
+    width: 0;
+  }
+}
+.toast.error {
+  --color: #f24d4c;
+  background-image: linear-gradient(to right, #f24d4c55, #22242f 30%);
+}
+.toast.warning {
+  --color: #e9bd0c;
+  background-image: linear-gradient(to right, #e9bd0c55, #22242f 30%);
+}
+.toast.info {
+  --color: #3498db;
+  background-image: linear-gradient(to right, #3498db55, #22242f 30%);
 }
 
 /* Back Button */
 .back_btn {
-    position: absolute;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 5%;
-    left: 5%;
-    border-radius: 50%;
-    background-image: url(../image/cardBG.jpg);
-    animation: animateBG 5s linear infinite;
-    transition: 1s;
-  }
-  
-  .back_btn a {
-    text-decoration: none;
-  }
-  
-  .back_btn ion-icon {
-    font-size: 30px;
-    font-weight: bold;
-    padding: 10px;
-    color: #00d0ff;
-  }
-  
-  .back_btn:hover {
-    animation: back_animation 5s linear infinite;
-  }
-  
-  .back_btn:hover ion-icon {
-    color: #333;
-  }
-  
-  @keyframes back_animation {
-    0% {
-      background: #e91818;
-      box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
-    }
-    15% {
-      background: #ffbc00;
-      box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
-    }
-    30% {
-      background: #4dff03;
-      box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
-    }
-    45% {
-      background: #00fbff;
-      box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
-    }
-    60% {
-      background: #1303f4;
-      box-shadow: 0 0 10px #1303f4, 0 0 30px #1303f4, 0 0 50px #1303f4;
-    }
-    75% {
-      background: #a803f4;
-      box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
-    }
-    100% {
-      background: #ff0058;
-      box-shadow: 0 0 10px #ff0058, 0 0 30px #ff0058, 0 0 50px #ff0058;
-    }
-  }
-
-@media screen and (max-width: 1300px){
-    .saveBtn .save{
-        right: 19%;
-    }
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 5%;
+  left: 19%;
+  border-radius: 50%;
+  background-image: url(../image/cardBG.jpg);
+  animation: animateBG 5s linear infinite;
+  transition: 1s;
 }
 
-@media screen and (max-width: 1000px){
-
-    .saveBtn .save{
-        right: 11%;
-    }
-}
-@media screen and (max-width: 1000px){
-    .userImg{
-        top: 2%;
-        left: 7%;
-    }
-    
-    .saveBtn .save{
-        right: 10%;
-    }
+.back_btn a {
+  text-decoration: none;
 }
 
-@media screen and (max-width: 810px){
-    
-    .userGmail, .userLevel, .userName, .userPassword{
-        width: 250px;
-        height: 40px;
-        padding-left: 10px;
-        border-radius: 20px;
-        color: #060c21;
-        display: flex;
-        align-items: center;
-    }
-
-    .user{
-        margin-bottom: 20px;
-        margin-left: 18%;
-    }
-    .userName{
-        margin-top: 43%;
-    }
-
-    .userImg{
-        top: 2%;
-        left: 20%;
-    }
-
-    *{
-        font-size: 15px;
-    }
-
-    .saveBtn .save{
-        width: 150px;
-        padding: 10px;
-        background: #060c21;
-        text-align: center;
-        border-radius: 20px;
-       bottom: 2%;
-        left: 27%;
-    }
+.back_btn ion-icon {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  color: #00d0ff;
 }
 
-@media screen and (max-width: 680px){
-    .userName{
-        margin-top: 50%;
-    }
-    .saveBtn .save{
-        width: 200px;
-        padding: 10px;
-        background: #060c21;
-        text-align: center;
-        border-radius: 20px;
-       bottom: 2%;
-        left: 27%;
-    }
-    .back_btn{
-        top: 10px;
-        left: 10px;
-    }
+.back_btn:hover {
+  animation: back_animation 5s linear infinite;
 }
 
-@media screen and (max-width: 550px){
+.back_btn:hover ion-icon {
+  color: #333;
+}
 
-    .userName{
-        margin-top: 60%;
-    }
-
-    .back_btn{
-        top: 10px;
-        left: 10px;
-    }
+@keyframes back_animation {
+  0% {
+    background: #e91818;
+    box-shadow: 0 0 10px #e91818, 0 0 30px #e91818, 0 0 50px #e91818;
+  }
+  15% {
+    background: #ffbc00;
+    box-shadow: 0 0 10px #ffbc00, 0 0 30px #ffbc00, 0 0 50px #ffbc00;
+  }
+  30% {
+    background: #4dff03;
+    box-shadow: 0 0 10px #4dff03, 0 0 30px #4dff03, 0 0 50px #4dff03;
+  }
+  45% {
+    background: #00fbff;
+    box-shadow: 0 0 10px #00fbff, 0 0 30px #00fbff, 0 0 50px #00fbff;
+  }
+  60% {
+    background: #1303f4;
+    box-shadow: 0 0 10px #1303f4, 0 0 30px #1303f4, 0 0 50px #1303f4;
+  }
+  75% {
+    background: #a803f4;
+    box-shadow: 0 0 10px #a803f4, 0 0 30px #a803f4, 0 0 50px #a803f4;
+  }
+  100% {
+    background: #ff0058;
+    box-shadow: 0 0 10px #ff0058, 0 0 30px #ff0058, 0 0 50px #ff0058;
+  }
 }

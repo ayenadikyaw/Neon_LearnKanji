@@ -1,21 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Profile</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Delius&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-    <script src="https://cdn.lordicon.com/lordicon.js"></script>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
     <link rel="stylesheet" href="../CSS/profile.css" />
     <script
       type="module"
@@ -27,85 +15,48 @@
     ></script>
     <script src="../Scripts/jquery3.6.0.js"></script>
     <script src="../Scripts/profile.js"></script>
+    <link rel="icon" href="../image/images.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../image/images.jpg" type="image/x-icon" />
   </head>
   <body>
-    <!-- background  -->
-    <div class="profileBg"></div>
     <!-- Back Button -->
     <div class="back_btn">
-      <a href="#">
-        <ion-icon name="return-up-back-outline"></ion-icon>
-      </a>
+      <a href="./LearningOrGame.html"
+        ><ion-icon name="return-up-back-outline"></ion-icon
+      ></a>
     </div>
-    <!-- profile heading  -->
-    <div class="profileBox">
+    
+    <div class="container">
+      <div class="header">
+        <img src="../image/images.jpg" alt="" class="profile" />
+        <div class="profile_info">
+          <h1>Neon</h1>
+        </div>
+      </div>
+      <hr class="line" />
       <div class="content">
-        <h1>Profile</h1>
+        <div>
+          <input type="text" id="username" value="Khin Myo" />
+          <ion-icon name="person"></ion-icon>
+        </div>
+        <div>
+          <input type="email" id="email" value="KhinMyoKhant.kmk3@gmail.com" />
+          <ion-icon name="mail"></ion-icon>
+        </div>
+        <div>
+          <input type="text" id="level" value="N5" />
+          <ion-icon name="language-outline"></ion-icon>
+        </div>
+        <div>
+          <input type="password" id="password" disabled value="jkjkjj" />
+          <ion-icon name="lock-closed"></ion-icon>
+        </div>
+      </div>
+      <div>
+        <button class="btn" id="save">SAVE</button>
       </div>
     </div>
 
-    <!-- glass -->
-    <div class="container glass">
-      <div class="imgBox">
-        <span
-          class="material-symbols-outlined neon icon userImg"
-          style="font-size: 250px"
-          >account_box</span
-        >
-      </div>
-      <div class="user userName">
-        <div class="info">
-          <span class="letter">User Name - </span>
-          <span id="username">Neon</span>
-        </div>
-      </div>
-      <div class="user userLevel">
-        <div class="info">
-          <span>Japanese Level -</span>
-          <span id="level"> 1 </span>
-        </div>
-      </div>
-      <div class="user userGmail">
-        <div class="info">
-          <span>Gmail - </span>
-          <span id="email">neon@gmail.com</span>
-        </div>
-      </div>
-      <div class="user inputBox userPassword">
-        <div class="info">
-          <span>Password - </span>
-          <input type="password" id="inputField" disabled value="Password" />
-          <span id="toggle" class="material-symbols-outlined eye"
-            >visibility_off</span
-          >
-        </div>
-      </div>
-
-      <!-- <div class="saveBtn">
-        <button class="save">Save</button>
-      </div> -->
-    </div>
-
-    <script>
-      window.onload = function () {
-        const toggleBtn = document.getElementById("toggle");
-        const inputField = document.getElementById("inputField");
-
-        toggleBtn.addEventListener("click", () => {
-          const currentInputFieldType = inputField.type;
-          if (currentInputFieldType === "password") {
-            inputField.type = "text";
-            toggleBtn.innerHTML =
-              '<span id="toggle" class="material-symbols-outlined">visibility</span>';
-          } else {
-            inputField.type = "password";
-            toggleBtn.innerHTML =
-              '<span class="material-symbols-outlined">visibility_off</span>';
-          }
-        });
-
-      };
-
-    </script>
+    <div class="notifications"></div>
   </body>
 </html>
