@@ -58,7 +58,7 @@ $(document).ready(function () {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "a5343ce928mshe32d45956477859p1b1634jsnba983eed9fe9",
+        "X-RapidAPI-Key": "7cfb400fa6msh803cd1333e9fe26p1ab998jsn28599e3b2014",
         "X-RapidAPI-Host": "kanjialive-api.p.rapidapi.com",
       },
     };
@@ -238,7 +238,7 @@ $(document).ready(function () {
 
   // Function to append or update data in the learndata array based on grade and level
   function appendOrUpdateData(PlayerProgress, newData, points) {
-    // Check if learndata exists
+    
      // Check if learndata exists
      if (PlayerProgress[1].learndata) {
       let existingEntryIndex = PlayerProgress[1].learndata.findIndex(entry => entry.grade === newData.grade && entry.mode === newData.mode);
@@ -258,7 +258,7 @@ $(document).ready(function () {
           console.log("Level is not higher than the existing entry for the same grade and mode");
       }
       
-      // Return only the learndata part
+  
       return PlayerProgress;
   } else {
       console.log("Learndata does not exist");

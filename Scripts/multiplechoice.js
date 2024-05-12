@@ -316,7 +316,7 @@ function findPlayerByID(id, players) {
 
 // Function to append or update data in the learndata array based on grade and level
 function appendOrUpdateData(PlayerProgress, newData) {
-  // Check if learndata exists
+
    // Check if learndata exists
    if (PlayerProgress[0].gamedata) {
     let existingEntryIndex = PlayerProgress[0].gamedata.findIndex(entry => entry.grade === newData.grade && entry.mode === newData.mode);
